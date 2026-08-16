@@ -1,0 +1,64 @@
+---
+const rows = [
+  {
+    key: "configs",
+    title: "Thoughtfully tuned, not just defaulted",
+    desc: "Every config ships reviewed and tested — not a stock file with the comments left in.",
+  },
+  {
+    key: "launcher",
+    title: "One consistent launcher, everywhere",
+    desc: "Every launcher surface shares the same polish, motion, and keyboard model.",
+  },
+  {
+    key: "editor",
+    title: "NitroVim, included",
+    desc: "A modal editor tuned for speed, with sane keybinds from the first keystroke.",
+  },
+  {
+    key: "packages",
+    title: "NPK for software management",
+    desc: "Install, update, and remove software with one predictable command.",
+  },
+  {
+    key: "defaults",
+    title: "Smooth defaults, advanced control",
+    desc: "Everything works on day one. Everything is still yours to override.",
+  },
+  {
+    key: "workflow",
+    title: "Built for productivity and speed",
+    desc: "Fewer clicks, fewer context switches, less time spent fighting the system.",
+  },
+];
+---
+
+<section id="why" class="border-t border-border px-6 py-24 sm:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+      <div>
+        <p class="mb-3 font-mono text-[13.5px] tracking-wide text-accent">Why Nitro OS</p>
+        <h2 class="text-balance font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+          A system that respects your time.
+        </h2>
+      </div>
+      <p class="max-w-md text-[16.5px] leading-relaxed text-text-muted lg:justify-self-end">
+        Nitro OS isn't a theme on top of a generic distro. Every surface —
+        config, launcher, editor, package manager — is built to the same
+        standard.
+      </p>
+    </div>
+
+    <div class="divide-y divide-border border-y border-border">
+      {
+        rows.map((row) => (
+          <div class="grid gap-2 py-6 sm:grid-cols-[140px_1fr_1.2fr] sm:items-baseline sm:gap-6">
+            <span class="font-mono text-[13.5px] text-text-dim">{row.key}</span>
+            <h3 class="font-display text-[18px] font-medium text-text">{row.title}</h3>
+            <p class="text-[15.5px] leading-relaxed text-text-muted">{row.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

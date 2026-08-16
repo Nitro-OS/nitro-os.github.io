@@ -115,3 +115,7 @@ html.light {
   --color-accent-soft: #e9f7ec;
   color-scheme: light;
 }
+
+html.light .logo-svg path {
+  fill: var(--color-accent) !important;
+}

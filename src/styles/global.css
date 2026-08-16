@@ -74,6 +74,7 @@ body {
 
 * {
   scrollbar-color: var(--color-border-strong) transparent;
+  scroll-behavior: smooth;
 }
 
 :focus-visible {

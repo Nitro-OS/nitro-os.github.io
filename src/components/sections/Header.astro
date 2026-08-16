@@ -2,13 +2,7 @@
 import Logo from "../ui/Logo.astro";
 import MobileMenu from "../solid/MobileMenu.tsx";
 import ThemeToggle from "../solid/ThemeToggle.tsx";
-
-const links = [
-  { href: "#features", label: "Features" },
-  { href: "#why", label: "Why Nitro" },
-  { href: "#tools", label: "Tools" },
-  { href: "#showcase", label: "Showcase" },
-];
+import { links } from "../../data/navigation";
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 w-full bg-transparent pt-4 px-4">

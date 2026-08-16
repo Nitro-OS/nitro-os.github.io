@@ -1,20 +1,6 @@
 ---
 import Logo from "../ui/Logo.astro";
-
-const cols = [
-  {
-    heading: "Product",
-    links: ["Features", "Why Nitro", "Showcase", "Changelog"],
-  },
-  {
-    heading: "Tools",
-    links: ["NitroVim", "NPK", "Launcher", "Documentation"],
-  },
-  {
-    heading: "Community",
-    links: ["GitHub", "Discord", "Forum"],
-  },
-];
+import { footerCols as cols } from "../../data/navigation";
 ---
 
 <footer class="border-t border-border px-6 py-16 sm:px-8">

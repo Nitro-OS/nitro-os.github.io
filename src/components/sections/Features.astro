@@ -1,34 +1,36 @@
 ---
+import { Zap, Shield, Sliders, Monitor, Gauge, Code2 } from "@lucide/astro";
+
 const features = [
   {
     title: "Fast and lightweight",
     desc: "Boots in seconds and stays out of the way. No background bloat, no wasted cycles.",
-    icon: "M13 2 4 14h6l-1 8 9-12h-6z",
+    icon: Zap,
   },
   {
     title: "Minimal by default",
     desc: "A clean surface from first login. Nothing to strip out, nothing you didn't ask for.",
-    icon: "M4 8h16M4 16h10",
+    icon: Shield,
   },
   {
     title: "Highly customizable",
     desc: "Every layer is yours to reshape — theming, keybinds, launcher behavior, and more.",
-    icon: "M4 6h16M4 12h10M4 18h16M17 9v6",
+    icon: Sliders,
   },
   {
     title: "Modern desktop",
     desc: "A composited, responsive desktop that feels current without chasing trends.",
-    icon: "M4 5h16v11H4zM9 20h6",
+    icon: Monitor,
   },
   {
     title: "Performance-focused",
     desc: "A scheduler and power profile tuned for real workloads, not benchmarks.",
-    icon: "M12 3v6l4 2",
+    icon: Gauge,
   },
   {
     title: "Built for developers",
     desc: "NitroVim, a real terminal workflow, and NPK — the tools you already reach for.",
-    icon: "m8 9-4 3 4 3M16 9l4 3-4 3M13 6l-2 12",
+    icon: Code2,
   },
 ];
 ---
@@ -44,26 +46,21 @@ const features = [
 
     <div class="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
       {
-        features.map((f) => (
-          <div class="group bg-bg px-7 py-8 transition-colors hover:bg-surface">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="mb-5 text-accent"
-              aria-hidden="true"
-            >
-              <path d={f.icon} />
-            </svg>
-            <h3 class="mb-2 font-display text-[18.5px] font-medium text-text">{f.title}</h3>
-            <p class="text-[15.5px] leading-relaxed text-text-muted">{f.desc}</p>
-          </div>
-        ))
+        features.map((f) => {
+          const Icon = f.icon;
+          return (
+            <div class="group bg-bg px-7 py-8 transition-colors hover:bg-surface">
+              <Icon
+                size={40}
+                stroke-width={1.8}
+                class="mb-5 text-accent"
+                aria-hidden="true"
+              />
+              <h3 class="mb-2 font-display text-[18.5px] font-medium text-text">{f.title}</h3>
+              <p class="text-[15.5px] leading-relaxed text-text-muted">{f.desc}</p>
+            </div>
+          );
+        })
       }
     </div>
   </div>

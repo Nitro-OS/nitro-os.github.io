@@ -1,5 +1,6 @@
 ---
 import Button from "../ui/Button.astro";
+import LogoIcon from "../ui/LogoIcon.astro";
 ---
 
 <section class="noise-veil relative overflow-hidden px-6 pt-36 pb-28 sm:px-8 sm:pt-44 sm:pb-36">
@@ -10,12 +11,9 @@ import Button from "../ui/Button.astro";
         class="absolute -inset-24 -z-10 rounded-full bg-accent/10 blur-3xl opacity-80" 
         aria-hidden="true"
       ></div>
-      <img
-        src="/images/logo.png"
-        alt="Nitro OS Logo"
-        width="240"
-        height="240"
-        class="relative z-10 h-[240px] w-[240px] object-contain filter drop-shadow-[0_0_40px_rgba(41,156,69,0.35)]"
+      <LogoIcon
+        size="320"
+        class="relative z-10 h-[320px] w-[320px] filter drop-shadow-[0_0_40px_rgba(41,156,69,0.35)]"
       />
     </div>
 

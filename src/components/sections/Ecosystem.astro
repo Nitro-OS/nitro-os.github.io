@@ -1,0 +1,68 @@
+---
+const utilities = [
+  {
+    title: "Launcher UIs",
+    desc: "A consistent app launcher and switcher tuned for keyboard-first use.",
+  },
+  {
+    title: "System configuration",
+    desc: "Plain-text configs with sane structure — readable, versionable, portable.",
+  },
+  {
+    title: "Developer workflow",
+    desc: "Terminal, editor, and package manager designed to work together.",
+  },
+  {
+    title: "Boost scheduler",
+    desc: "A process scheduler that prioritizes what you're actively working on.",
+  },
+];
+---
+
+<section id="tools" class="border-t border-border px-6 py-24 sm:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-14 max-w-xl">
+      <p class="mb-3 font-mono text-[13.5px] tracking-wide text-accent">Tools &amp; ecosystem</p>
+      <h2 class="text-balance font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+        The built-in toolkit.
+      </h2>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div class="rounded-xl border border-border bg-surface p-7">
+        <p class="mb-4 font-mono text-[13.5px] text-text-dim">01 · editor</p>
+        <h3 class="mb-2 font-display text-2xl font-semibold text-text">NitroVim</h3>
+        <p class="mb-6 max-w-sm text-[15.5px] leading-relaxed text-text-muted">
+          A modal, keyboard-driven editor tuned for real work — fast startup,
+          sane defaults, and a config format that stays out of your way.
+        </p>
+        <div class="rounded-lg border border-border bg-bg px-4 py-3 font-mono text-[13.5px] text-text-dim">
+          <span class="text-accent">❯</span> nvim edit ./workspace
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-border bg-surface p-7">
+        <p class="mb-4 font-mono text-[13.5px] text-text-dim">02 · packages</p>
+        <h3 class="mb-2 font-display text-2xl font-semibold text-text">NPK</h3>
+        <p class="mb-6 max-w-sm text-[15.5px] leading-relaxed text-text-muted">
+          The Nitro package manager. Resolve, install, and update software
+          with one predictable command — no dependency guesswork.
+        </p>
+        <div class="rounded-lg border border-border bg-bg px-4 py-3 font-mono text-[13.5px] text-text-dim">
+          <span class="text-accent">❯</span> npk install nitrovim
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        utilities.map((u) => (
+          <div class="rounded-xl border border-border bg-surface p-6">
+            <h3 class="mb-2 font-display text-[17px] font-medium text-text">{u.title}</h3>
+            <p class="text-[15px] leading-relaxed text-text-muted">{u.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

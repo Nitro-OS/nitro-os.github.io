@@ -1,4 +1,6 @@
 ---
+import LogoIcon from "./LogoIcon.astro";
+
 interface Props {
   class?: string;
   markOnly?: boolean;
@@ -7,17 +9,11 @@ interface Props {
 const { class: className = "", markOnly = false } = Astro.props;
 ---
 
-<div class={`flex items-center gap-2.5 ${className}`}>
-  <img
-    src="/images/logo.png"
-    alt="Nitro OS Logo"
-    width="22"
-    height="22"
-    class="h-[22px] w-[22px] object-contain shrink-0"
-  />
+<div class={`flex items-center gap-3 ${className}`}>
+  <LogoIcon size="28" />
   {
     !markOnly && (
-      <span class="font-display text-[15px] font-semibold tracking-tight text-text">
+      <span class="font-display text-[17.5px] font-semibold tracking-tight text-text">
         Nitro<span class="text-text-muted font-medium">OS</span>
       </span>
     )

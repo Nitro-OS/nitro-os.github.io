@@ -1,0 +1,45 @@
+---
+import Logo from "../ui/Logo.astro";
+import MobileMenu from "../solid/MobileMenu.tsx";
+import ThemeToggle from "../solid/ThemeToggle.tsx";
+
+const links = [
+  { href: "#features", label: "Features" },
+  { href: "#why", label: "Why Nitro" },
+  { href: "#tools", label: "Tools" },
+  { href: "#showcase", label: "Showcase" },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 w-full bg-transparent pt-4 px-4">
+  <div class="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-border/60 bg-surface/75 px-6 py-2.5 backdrop-blur-lg shadow-xl">
+    <a href="/" class="text-text transition-opacity hover:opacity-90">
+      <Logo />
+    </a>
+
+    <nav class="hidden items-center gap-8 sm:flex">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="font-mono text-[13px] text-text-muted transition-colors hover:text-text"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden items-center gap-4 sm:flex">
+      <ThemeToggle client:load />
+      <a
+        href="#download"
+        class="inline-flex items-center rounded-full bg-accent px-5 py-2 text-[13px] font-semibold font-display text-bg transition-colors hover:bg-accent-dim shadow-[0_2px_10px_rgba(41,156,69,0.2)]"
+      >
+        Download
+      </a>
+    </div>
+
+    <MobileMenu client:load />
+  </div>
+</header>

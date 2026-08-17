@@ -3,6 +3,7 @@ import Logo from "../ui/Logo.astro";
 import MobileMenu from "../solid/MobileMenu.tsx";
 import ThemeToggle from "../solid/ThemeToggle.tsx";
 import { links } from "../../data/navigation";
+import { FaBrandsGithub }from "solid-icons/fa"
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 w-full bg-transparent pt-4 px-4">
@@ -26,6 +27,15 @@ import { links } from "../../data/navigation";
 
     <div class="hidden items-center gap-4 sm:flex">
       <ThemeToggle client:load />
+      <a
+        href="https://github.com/Nitro-OS/nitro-os.github.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub Repository"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-colors hover:border-accent/40 hover:text-accent shadow-sm"
+      >
+          <FaBrandsGithub size={16} class="h-4 w-4" />
+      </a>
       <a
         href="#download"
         class="inline-flex items-center rounded-full bg-accent px-5 py-2 text-[13px] font-semibold font-display text-bg transition-colors hover:bg-accent-dim shadow-[0_2px_10px_rgba(41,156,69,0.2)]"

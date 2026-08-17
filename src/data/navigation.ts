@@ -3,9 +3,14 @@ export interface NavLink {
   label: string;
 }
 
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
 export interface FooterColumn {
   heading: string;
-  links: string[];
+  links: FooterLink[];
 }
 
 export const links: NavLink[] = [
@@ -18,14 +23,27 @@ export const links: NavLink[] = [
 export const footerCols: FooterColumn[] = [
   {
     heading: "Product",
-    links: ["Features", "Why Nitro", "Showcase", "Changelog"],
+    links: [
+      { label: "Features", href: "#features" },
+      { label: "Why Nitro", href: "#why" },
+      { label: "Showcase", href: "#showcase" },
+      { label: "Changelog", href: "https://github.com/Nitro-OS/nitro-os.github.io/releases" },
+    ],
   },
   {
     heading: "Tools",
-    links: ["NitroVim", "NPK", "Launcher", "Documentation"],
+    links: [
+      { label: "NitroVim", href: "#tools", href: "https://github.com/NitroVim/NitroVim" },
+      { label: "NPK", href: "#tools", href: "https://github.com/Nitro-OS/NitroPkg" },
+      { label: "Launcher", href: "#tools" },
+      { label: "Documentation", href: "https://github.com/Nitro-OS/nitro-os.github.io#readme" },
+    ],
   },
   {
     heading: "Community",
-    links: ["GitHub", "Discord", "Forum"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Nitro-OS" },
+      { label: "Forum", href: "https://github.com/Nitro-OS/nitro-os.github.io/discussions" },
+    ],
   },
 ];

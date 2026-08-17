@@ -8,7 +8,7 @@ import { footerCols as cols } from "../../data/navigation";
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_repeat(3,1fr)]">
       <div>
         <Logo class="text-text" />
-        <p class="mt-4 max-w-[220px] text-[13.5px] leading-relaxed text-text-muted">
+        <p class="mt-4 max-w-55 text-[13.5px] leading-relaxed text-text-muted">
           A minimal, modern Linux distribution for power users.
         </p>
       </div>
@@ -21,10 +21,11 @@ import { footerCols as cols } from "../../data/navigation";
               {col.links.map((link) => (
                 <li>
                   <a
-                    href="#"
+                    href={link.href}
+                    target={!link.href ? "_blank" : ""}
                     class="text-[13.5px] text-text-muted transition-colors hover:text-text"
                   >
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}

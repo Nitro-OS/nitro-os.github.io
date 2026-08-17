@@ -11,28 +11,78 @@ import { ecosystemUtilities as utilities } from "../../data/ecosystem";
       </h2>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-      <div class="rounded-xl border border-border bg-surface p-7">
-        <p class="mb-4 font-mono text-[13.5px] text-text-dim">01 · editor</p>
-        <h3 class="mb-2 font-display text-2xl font-semibold text-text">NitroVim</h3>
-        <p class="mb-6 max-w-sm text-[15.5px] leading-relaxed text-text-muted">
-          A modal, keyboard-driven editor tuned for real work — fast startup,
-          sane defaults, and a config format that stays out of your way.
-        </p>
-        <div class="rounded-lg border border-border bg-bg px-4 py-3 font-mono text-[13.5px] text-text-dim">
-          <span class="text-accent">❯</span> nvim edit ./workspace
+    <div class="grid gap-4 lg:grid-cols-3">
+      <div class="rounded-xl border border-border bg-surface p-7 flex flex-col justify-between">
+        <div>
+          <p class="mb-4 font-mono text-[13.5px] text-text-dim">01 · editor</p>
+          <h3 class="mb-2 font-display text-2xl font-semibold text-text">NitroVim</h3>
+          <p class="mb-6 text-[15.5px] leading-relaxed text-text-muted">
+            A modal, keyboard-driven editor tuned for developer productivity.
+            High-performance out-of-the-box config that loads in milliseconds.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-bg p-4 font-mono text-[13px] text-text-dim leading-relaxed">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="text-accent">❯</span>
+            <span>nvim src/main.rs</span>
+          </div>
+          <div class="text-text-dim/60 pl-4 mb-3">
+            Loading project trees...
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-accent">❯</span>
+            <span class="text-text">Loaded custom config (4ms)</span>
+          </div>
         </div>
       </div>
 
-      <div class="rounded-xl border border-border bg-surface p-7">
-        <p class="mb-4 font-mono text-[13.5px] text-text-dim">02 · packages</p>
-        <h3 class="mb-2 font-display text-2xl font-semibold text-text">NPK</h3>
-        <p class="mb-6 max-w-sm text-[15.5px] leading-relaxed text-text-muted">
-          The Nitro package manager. Resolve, install, and update software
-          with one predictable command — no dependency guesswork.
-        </p>
-        <div class="rounded-lg border border-border bg-bg px-4 py-3 font-mono text-[13.5px] text-text-dim">
-          <span class="text-accent">❯</span> npk install nitrovim
+      <div class="rounded-xl border border-border bg-surface p-7 flex flex-col justify-between">
+        <div>
+          <p class="mb-4 font-mono text-[13.5px] text-text-dim">02 · package manager</p>
+          <h3 class="mb-2 font-display text-2xl font-semibold text-text">NPK</h3>
+          <p class="mb-6 text-[15.5px] leading-relaxed text-text-muted">
+            The native Nitro OS package manager. Search, install, and update
+            system packages with simple commands and zero dependency guesswork.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-bg p-4 font-mono text-[13px] text-text-dim leading-relaxed">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="text-accent">❯</span>
+            <span>npk search neovim</span>
+          </div>
+          <div class="text-text-dim/60 pl-4 mb-3">
+            neovim [0.10.4] - Vim-fork focused on extensibility
+          </div>
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="text-accent">❯</span>
+            <span>npk install neovim</span>
+          </div>
+          <div class="text-accent/80 pl-4">
+            ✓ Installed neovim in 1.4s
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-border bg-surface p-7 flex flex-col justify-between">
+        <div>
+          <p class="mb-4 font-mono text-[13.5px] text-text-dim">03 · api client</p>
+          <h3 class="mb-2 font-display text-2xl font-semibold text-text">NitroHttp</h3>
+          <p class="mb-6 text-[15.5px] leading-relaxed text-text-muted">
+            A modern, minimal API client. Send requests from the terminal using
+            nhttp or open the visual client to manage collections.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-bg p-4 font-mono text-[13px] text-text-dim leading-relaxed">
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="text-accent">❯</span>
+            <span>nhttp get --url api.example.com</span>
+          </div>
+          <div class="text-text-dim/60 pl-4 mb-2">
+            Status: 200 OK | Time: 42ms | Size: 1.2 KB
+          </div>
+          <div class="text-text/75 pl-4 overflow-x-auto whitespace-nowrap scrollbar-none">
+            &#123; "status": "healthy", "version": "1.4.2" &#125;
+          </div>
         </div>
       </div>
     </div>

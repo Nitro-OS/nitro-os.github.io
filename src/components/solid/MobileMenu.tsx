@@ -1,5 +1,6 @@
 import { createSignal, Show, createEffect, For } from "solid-js";
 import { Portal } from "solid-js/web";
+import { FaBrandsGithub } from "solid-icons/fa";
 import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
@@ -21,25 +22,26 @@ export default function MobileMenu() {
   });
 
   return (
-    <div class="sm:hidden">
+    <div class="sm:hidden flex-shrink-0">
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open()}
         aria-label="Toggle menu"
-        class="relative z-[60] flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
+        class="relative z-[60] flex h-9 w-9 cursor-pointer flex-shrink-0 flex-col items-center justify-center gap-[5px] text-text"
       >
         <span
-          class="h-px w-5 bg-white transition-transform duration-200"
+          class="h-px w-5 bg-text transition-transform duration-200"
           style={{
             transform: open() ? "translateY(6px) rotate(45deg)" : "none",
           }}
         />
         <span
-          class="h-px w-5 bg-white transition-opacity duration-150"
+          class="h-px w-5 bg-text transition-opacity duration-150"
           style={{ opacity: open() ? 0 : 1 }}
         />
         <span
-          class="h-px w-5 bg-white transition-transform duration-200"
+          class="h-px w-5 bg-text transition-transform duration-200"
           style={{
             transform: open() ? "translateY(-6px) rotate(-45deg)" : "none",
           }}
@@ -48,7 +50,6 @@ export default function MobileMenu() {
 
       <Show when={open()}>
         <Portal>
-          {/* Backdrop Dimmer Overlay */}
           <div 
             onClick={() => setOpen(false)}
             class="fixed inset-0 z-40 bg-black/40 animate-fade-in"
@@ -58,7 +59,6 @@ export default function MobileMenu() {
             }}
           />
 
-          {/* Floating Dropdown Card */}
           <div 
             class="fixed top-20 left-4 right-4 z-50 flex flex-col gap-4 rounded-2xl border border-border bg-surface/95 p-6 shadow-2xl max-w-md mx-auto animate-fade-in"
             style={{
@@ -83,6 +83,15 @@ export default function MobileMenu() {
             
             <div class="flex items-center gap-3 mt-2">
               <ThemeToggle />
+              <a
+                href="https://github.com/Nitro-OS/nitro-os.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Repository"
+                class="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-text-muted transition-colors hover:border-accent/40 hover:text-accent shadow-sm"
+              >
+                <FaBrandsGithub size={16} class="h-4 w-4" />
+              </a>
               <a
                 href="#download"
                 onClick={() => setOpen(false)}

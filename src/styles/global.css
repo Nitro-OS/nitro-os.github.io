@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0b0c0a;
-  --color-surface: #131511;
-  --color-surface-2: #191c16;
-  --color-border: #23261f;
-  --color-border-strong: #34382c;
+  --color-bg: #0f0f0f;
+  --color-surface: #191c18;
+  --color-surface-2: #212520;
+  --color-border: #353a31;
+  --color-border-strong: #484f43;
   --color-text: #f3f5ee;
   --color-text-muted: #c1c6bd;
   --color-text-dim: #8e948a;
   --color-accent: #299C45;
   --color-accent-dim: #217D37;
-  --color-accent-soft: #0e2213;
+  --color-accent-soft: #142a19;
 
   --font-display: "Orbitron", "Oxanium", sans-serif;
   --font-body: "Space Grotesk", "IBM Plex Sans", sans-serif;
@@ -61,10 +61,29 @@ html {
 }
 
 body {
-  background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  background-color: #0f0f0f;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(40, 167, 69, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(40, 167, 69, 0.1), transparent 60%),
+    radial-gradient(circle at 50% 90%, rgba(40, 167, 69, 0.08), transparent 65%),
+    radial-gradient(circle at 10% 80%, rgba(40, 167, 69, 0.04), transparent 60%),
+    radial-gradient(circle at 90% 60%, rgba(40, 167, 69, 0.12), transparent 60%),
+    linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+  background-attachment: fixed;
+}
+
+html.light body {
+  background-color: #f6f7fb;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.25), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.22), transparent 50%),
+    radial-gradient(circle at 20% 85%, rgba(132, 204, 22, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(74, 222, 128, 0.2), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.1), transparent 70%);
+  background-attachment: fixed;
 }
 
 ::selection {
@@ -104,15 +123,15 @@ body {
 }
 
 html.light {
-  --color-bg: #f5f7f4;
+  --color-bg: #f6f7fb;
   --color-surface: #ffffff;
-  --color-surface-2: #eaece7;
-  --color-border: #dadcd5;
-  --color-border-strong: #bec2b8;
-  --color-text: #131511;
-  --color-text-muted: #4a5046;
-  --color-text-dim: #737a6f;
-  --color-accent-soft: #e9f7ec;
+  --color-surface-2: #edf1f7;
+  --color-border: #dcdfe6;
+  --color-border-strong: #b0b5c0;
+  --color-text: #10141d;
+  --color-text-muted: #4a5160;
+  --color-text-dim: #767e8d;
+  --color-accent-soft: #e2f6e7;
   color-scheme: light;
 }
 

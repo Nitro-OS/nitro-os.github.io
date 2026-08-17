@@ -1,6 +1,5 @@
 import type { AstroComponent } from "@lucide/astro";
 import { Zap, Shield, Sliders, Monitor, Gauge, Code2 } from "@lucide/astro";
-import type { JSX } from "astro/jsx-runtime";
 
 export interface FeatureItem {
   title: string;

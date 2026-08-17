@@ -23,6 +23,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.0",
     "lucide-solid": "^1.31.0",
+    "solid-icons": "^1.2.0",
     "solid-js": "^1.9.14",
     "tailwindcss": "^4.3.3"
   }

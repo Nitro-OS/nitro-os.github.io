@@ -1,0 +1,36 @@
+---
+title: "GPU & Graphics Drivers"
+section: "Advanced Guides"
+description: "Hardware acceleration setup for Nvidia (explicit sync), AMD Radeon (Mesa/RADV), and Intel Arc GPUs."
+lastUpdated: "2026"
+prev:
+  title: "Ecosystem Tools"
+  href: "/docs/ecosystem-tools"
+next:
+  title: "Screen Sharing & Portals"
+  href: "/docs/screen-sharing"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="amd-intel-mesa">
+      AMD &amp; Intel Graphics (Mesa)
+    </SectionHeading>
+    <p>
+      Mesa open-source drivers with Vulkan are pre-installed and enabled out-of-the-box for zero-configuration gaming and Wayland hardware acceleration.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="nvidia-wayland">
+      Nvidia Proprietary Drivers (Wayland)
+    </SectionHeading>
+
+```bash
+# Install Nvidia explicit sync drivers
+npk install nvidia-dkms nvidia-utils egl-wayland
+```
+  </section>
+</div>

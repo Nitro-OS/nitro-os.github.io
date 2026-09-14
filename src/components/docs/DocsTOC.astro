@@ -15,7 +15,7 @@ const { headings, slug } = Astro.props;
   aria-label="Table of contents"
 >
   <div class="flex-1 overflow-y-auto space-y-3 pr-1 scrollbar-thin">
-    <div class="flex items-center gap-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-muted font-mono">
+    <div class="flex items-center gap-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-muted">
       <svg class="w-3.5 h-3.5 text-[#299C45]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h.01M8 6h12M4 12h.01M8 12h12M4 18h.01M8 18h12" />
       </svg>
@@ -45,7 +45,7 @@ const { headings, slug } = Astro.props;
         ))}
       </nav>
     ) : (
-      <p class="text-xs text-text-dim pl-2 font-mono">Overview</p>
+      <p class="text-xs text-text-dim pl-2">Overview</p>
     )}
   </div>
 
@@ -75,7 +75,7 @@ const { headings, slug } = Astro.props;
       </a>
 
       <a 
-        href="https://github.com/Nitro-OS/nitro-os.github.io" 
+        href="https://github.com/Nitro-OS" 
         target="_blank" 
         rel="noopener noreferrer"
         class="flex items-center justify-between text-text-dim hover:text-text transition-colors group"

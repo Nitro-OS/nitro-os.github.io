@@ -1,10 +1,12 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, onMount, onCleanup, For, Show } from "solid-js";
 import { TABS } from "../../data/showcase";
 
 type TabId = (typeof TABS)[number]["id"];
 
 export default function ShowcaseTabs() {
   const [activeTab, setActiveTab] = createSignal<TabId>("desktop");
+  const [isVisible, setIsVisible] = createSignal<boolean>(false);
+  let containerRef: HTMLDivElement | undefined;
 
   const [activeSubtabs, setActiveSubtabs] = createSignal<Record<TabId, string>>({
     desktop: "wallpaper",
@@ -12,6 +14,26 @@ export default function ShowcaseTabs() {
     dev: "nitrovim-code",
     npk: "fastfetch",
     settings: "feel",
+  });
+
+  onMount(() => {
+    if (typeof IntersectionObserver !== "undefined" && containerRef) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              setIsVisible(true);
+              observer.disconnect();
+            }
+          }
+        },
+        { rootMargin: "200px" }
+      );
+      observer.observe(containerRef);
+      onCleanup(() => observer.disconnect());
+    } else {
+      setIsVisible(true);
+    }
   });
 
   const currentTabObj = () => TABS.find((t) => t.id === activeTab());
@@ -36,7 +58,7 @@ export default function ShowcaseTabs() {
   };
 
   return (
-    <div>
+    <div ref={containerRef}>
       <div
         role="tablist"
         aria-label="Nitro OS surfaces"
@@ -81,14 +103,15 @@ export default function ShowcaseTabs() {
         </Show>
 
         <div class="relative aspect-video w-full bg-bg overflow-hidden">
-          <Show when={currentSubtabObj()}>
+          <Show when={isVisible() && currentSubtabObj()}>
             {(sub) => (
               <div class="h-full w-full relative animate-fade-in">
                 <img
                   src={sub().src}
                   alt={sub().label}
                   class="h-full w-full object-cover"
-                  loading="eager"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             )}

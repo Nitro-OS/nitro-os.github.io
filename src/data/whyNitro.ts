@@ -8,7 +8,7 @@ export const whyNitroRows: WhyNitroRow[] = [
   {
     key: "configs",
     title: "Thoughtfully tuned, not just defaulted",
-    desc: "Every config ships reviewed and tested — not a stock file with the comments left in.",
+    desc: "Every config ships reviewed and tested, not a stock file with the comments left in.",
   },
   {
     key: "launcher",

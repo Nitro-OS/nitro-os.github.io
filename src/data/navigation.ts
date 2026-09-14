@@ -14,10 +14,11 @@ export interface FooterColumn {
 }
 
 export const links: NavLink[] = [
-  { href: "#features", label: "Features" },
-  { href: "#why", label: "Why Nitro" },
-  { href: "#tools", label: "Tools" },
-  { href: "#showcase", label: "Showcase" },
+  { href: "/#features", label: "Features" },
+  { href: "/#why", label: "Why Nitro" },
+  { href: "/#tools", label: "Tools" },
+  { href: "/#showcase", label: "Showcase" },
+  { href: "/docs", label: "Docs" },
 ];
 
 export const footerCols: FooterColumn[] = [
@@ -33,8 +34,8 @@ export const footerCols: FooterColumn[] = [
   {
     heading: "Tools",
     links: [
-      { label: "NitroVim", href: "#tools", href: "https://github.com/NitroVim/NitroVim" },
-      { label: "NPK", href: "#tools", href: "https://github.com/Nitro-OS/NitroPkg" },
+      { label: "NitroVim", href: "https://github.com/NitroVim/NitroVim" },
+      { label: "NPK", href: "https://github.com/Nitro-OS/NitroPkg" },
       { label: "Launcher", href: "#tools" },
       { label: "Documentation", href: "https://github.com/Nitro-OS/nitro-os.github.io#readme" },
     ],

@@ -64,7 +64,7 @@ export default function MobileMenu() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    class="flex items-center justify-between py-3.5 px-3 font-mono text-[14px] text-text-muted hover:text-text hover:bg-surface-2/30 transition-colors"
+                    class="flex items-center justify-between py-3.5 px-3 font-medium text-[14px] text-text-muted hover:text-text hover:bg-surface-2/30 transition-colors"
                   >
                     <span>{link.label}</span>
                     <span class="text-accent text-xs font-semibold">❯</span>
@@ -75,7 +75,7 @@ export default function MobileMenu() {
             
             <div class="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/Nitro-OS/nitro-os.github.io"
+                href="https://github.com/Nitro-OS"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Repository"

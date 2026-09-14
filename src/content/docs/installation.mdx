@@ -1,0 +1,118 @@
+---
+title: "Installation Guide"
+section: "Getting Started"
+description: "Step-by-step guide to downloading, live booting, partitioning, and installing Nitro OS on bare metal and virtual machines."
+lastUpdated: "2026"
+prev:
+  title: "Introduction"
+  href: "/docs/introduction"
+next:
+  title: "Quickstart Checklist"
+  href: "/docs/quickstart"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+import KeyCombo from "../../components/ui/KeyCombo.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="system-requirements">
+      System Requirements
+    </SectionHeading>
+    <p>
+      Nitro OS is optimized for modern x86_64 architecture machines with UEFI firmware. Ensure your target machine meets these specifications:
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-4">
+        <div class="pb-2 border-b border-border/50">
+          <h3 class="text-xs uppercase tracking-wider text-text-muted font-semibold font-mono">Minimum Specs</h3>
+        </div>
+        <ul class="space-y-2.5 text-sm text-text-muted font-sans">
+          <li><strong class="text-text font-medium">CPU:</strong> 64-bit Dual-Core (x86_64)</li>
+          <li><strong class="text-text font-medium">RAM:</strong> 2 GB (4 GB recommended)</li>
+          <li><strong class="text-text font-medium">Storage:</strong> 20 GB NVMe / SSD / HDD</li>
+          <li><strong class="text-text font-medium">Graphics:</strong> OpenGL 3.3+ or Vulkan GPU</li>
+          <li><strong class="text-text font-medium">Firmware:</strong> UEFI Boot Support</li>
+        </ul>
+      </Card>
+
+      <Card class="space-y-4">
+        <div class="pb-2 border-b border-border/50">
+          <h3 class="text-xs uppercase tracking-wider text-[#299C45] font-semibold font-mono">Recommended Specs</h3>
+        </div>
+        <ul class="space-y-2.5 text-sm text-text-muted font-sans">
+          <li><strong class="text-text font-medium">CPU:</strong> 4+ Cores Intel / AMD Ryzen</li>
+          <li><strong class="text-text font-medium">RAM:</strong> 8 GB+ High-Speed Memory</li>
+          <li><strong class="text-text font-medium">Storage:</strong> 50 GB+ NVMe SSD</li>
+          <li><strong class="text-text font-medium">Graphics:</strong> AMD Radeon, Intel Arc, or Nvidia</li>
+          <li><strong class="text-text font-medium">Network:</strong> Active Internet Connection</li>
+        </ul>
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="download-iso">
+      Download &amp; Flash ISO
+    </SectionHeading>
+    <p>
+      Download the latest release ISO from GitHub Releases or the official download mirror. Verify SHA256 checksums and flash to a USB flash drive:
+    </p>
+
+```bash
+# Verify ISO Checksum
+sha256sum nitro-os-latest-x86_64.iso
+
+# Flash via dd (Replace /dev/sdX with your actual USB drive)
+sudo dd if=nitro-os-latest-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="live-boot">
+      Booting Live Environment
+    </SectionHeading>
+    <p>
+      Insert the USB drive, enter your system BIOS/UEFI boot menu (typically <Kbd>F12</Kbd>, <Kbd>F11</Kbd>, or <Kbd>Del</Kbd>), disable Secure Boot, and boot into the live environment.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="installer-wizard">
+      Running Nitro Installer
+    </SectionHeading>
+    <p>
+      Once inside the live desktop session, press <KeyCombo keys={["SUPER", "Space"]} /> to open the application launcher, then search for and click <strong class="text-white">Install NitroOS</strong> to start the graphical installer.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="partitioning-guide">
+      Partitioning &amp; File Systems
+    </SectionHeading>
+    <p>
+      The installer allows you to choose automated whole-disk partitioning (EXT4 / Btrfs) or manual partition layout with <code class="text-[#299C45] font-mono">cfdisk</code>:
+    </p>
+
+```bash
+# EFI System Partition: /boot/efi (512MB FAT32)
+# Root Partition: / (Btrfs or EXT4)
+# Swap: (Optional zram / swapfile)
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="first-boot">
+      Rebooting into Nitro OS
+    </SectionHeading>
+    <p>
+      Once installation finishes, remove the USB drive and reboot:
+    </p>
+
+```bash
+sudo reboot
+```
+  </section>
+</div>

@@ -20,7 +20,7 @@ export const features: FeatureItem[] = [
   },
   {
     title: "Highly customizable",
-    desc: "Every layer is yours to reshape — theming, keybinds, launcher behavior, and more.",
+    desc: "Every layer is yours to reshape: theming, keybinds, launcher behavior, and more.",
     icon: Sliders,
   },
   {
@@ -35,7 +35,7 @@ export const features: FeatureItem[] = [
   },
   {
     title: "Built for developers",
-    desc: "NitroVim, a real terminal workflow, and NPK — the tools you already reach for.",
+    desc: "NitroVim, a real terminal workflow, and NPK: the tools you already reach for.",
     icon: Code2,
   },
 ];

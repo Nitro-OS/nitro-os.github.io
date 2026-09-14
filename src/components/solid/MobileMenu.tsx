@@ -4,10 +4,11 @@ import { FaBrandsGithub } from "solid-icons/fa";
 import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#why", label: "Why Nitro" },
-  { href: "#tools", label: "Tools" },
-  { href: "#showcase", label: "Showcase" },
+  { href: "/#features", label: "Features" },
+  { href: "/#why", label: "Why Nitro" },
+  { href: "/#tools", label: "Tools" },
+  { href: "/#showcase", label: "Showcase" },
+  { href: "/docs", label: "Docs" },
 ];
 
 export default function MobileMenu() {

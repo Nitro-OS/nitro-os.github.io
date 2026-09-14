@@ -1,0 +1,30 @@
+---
+title: "NPK Packaging Guide"
+section: "Nitro Package Manager"
+description: "How to write PKGBUILD recipes, compile software, package binaries, and publish to community mirrors."
+lastUpdated: "2026"
+prev:
+  title: "NPK Configuration"
+  href: "/docs/npk-config"
+next:
+  title: "NitroVim Modal Editor"
+  href: "/docs/nitrovim"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="pkgbuild-overview">
+      Creating Packages with PKGBUILD
+    </SectionHeading>
+    <p>
+      Packages for Nitro OS are defined using straightforward declarative recipe files:
+    </p>
+
+```bash
+# Build package from directory
+makepkg -si
+```
+  </section>
+</div>

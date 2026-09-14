@@ -1,0 +1,127 @@
+---
+title: "NPK Overview"
+section: "Nitro Package Manager"
+description: "Architecture, speed, parallel downloads, and safety model of the Rust-powered NitroPkg manager."
+lastUpdated: "2026"
+prev:
+  title: "Hyprland Config & Monitors"
+  href: "/docs/hypr-config"
+next:
+  title: "NPK CLI Commands"
+  href: "/docs/npk-commands"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="what-is-npk">
+      What is NitroPkg (npk)?
+    </SectionHeading>
+    <p>
+      <strong class="text-text">NitroPkg (npk)</strong> is the official package manager for <strong class="text-white">Nitro OS</strong>. Engineered in <strong class="text-[#299C45]">Rust</strong>, it provides a fast, lightweight, and user-friendly command-line interface for installing, removing, updating, and managing system software.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="features">
+      Key Features &amp; Architecture
+    </SectionHeading>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Fast Package Management</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Written in Rust with asynchronous parallel downloads and instant index lookups.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Simple &amp; Intuitive Commands</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Clean single-character aliases (npk i, npk rm, npk s) for effortless daily workflow.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Package Search</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Fast multi-keyword search across official repositories and community package mirrors.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">System Updates &amp; Upgrades</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Single-command synchronized repository refresh and rolling system package upgrades.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Cache Cleanup</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Built-in automated cache garbage collection to maintain lean disk footprint.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Rust Powered Safety</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Memory-safe binary architecture ensuring crash-free package transaction rollbacks.</p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="installation-verification">
+      Installation &amp; Verification
+    </SectionHeading>
+    <p>
+      NitroPkg comes pre-installed with Nitro OS. You can verify your installed version directly from any terminal:
+    </p>
+
+```bash
+# Check npk version
+npk --version
+
+# View all available flags and help
+npk --help
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="basic-usage">
+      Basic CLI Usage &amp; Syntax
+    </SectionHeading>
+    <p>The standard command syntax:</p>
+
+```bash
+npk <COMMAND> [ARGUMENTS]
+```
+
+    <DataTable headers={["Command", "Alias", "Example", "Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">install</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>i</Kbd></td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk i firefox</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Install one or more software packages.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">remove</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>rm</Kbd></td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk rm firefox</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Remove installed packages cleanly.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">search</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>s</Kbd></td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk s neovim</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Search repository packages by name/keyword.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">update</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk update</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Synchronize remote package databases.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">upgrade</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk upgrade</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Upgrade all installed system packages.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">clean</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-muted text-xs"><code class="text-white">npk clean</code></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Remove old/unused downloaded package cache.</td>
+      </tr>
+    </DataTable>
+  </section>
+</div>

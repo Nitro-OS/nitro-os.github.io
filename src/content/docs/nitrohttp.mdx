@@ -1,0 +1,179 @@
+---
+title: "NitroHttp CLI"
+section: "Ecosystem Tools"
+description: "High-performance CLI HTTP testing client for rapid endpoint validation, JSON tables, and latency analysis."
+lastUpdated: "2026"
+prev:
+  title: "NitroVim Modal Editor"
+  href: "/docs/nitrovim"
+next:
+  title: "Ecosystem Tools"
+  href: "/docs/ecosystem-tools"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="overview">
+      Overview &amp; Subcommands
+    </SectionHeading>
+    <p>
+      <strong class="text-text">NitroHttp CLI (<code class="text-[#299C45]">nhttp</code>)</strong> is the command-line companion to NitroHttp. It is a blazing-fast HTTP testing tool for rapid API validation directly from the terminal, featuring syntax-highlighted JSON rendering, structured table views, and rich response statistics.
+    </p>
+
+    <DataTable headers={["Subcommand", "Short Alias", "Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">get</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>g</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Fetch resources and render formatted JSON in a bordered table with response statistics.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">post</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>p</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Create a resource or submit inline JSON payload or file contents to an endpoint.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">put</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>pu</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Replace a target resource entirely with JSON content from string or file.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">patch</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>pa</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Update part of a resource with partial JSON payload.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">delete</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>del</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Remove a remote resource by ID or query endpoint.</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="installation">
+      Installation &amp; Verification
+    </SectionHeading>
+    <p>
+      NitroHttp is pre-installed on Nitro OS. You can also install or update it as a global .NET tool or compile it with Native AOT for instant sub-millisecond execution:
+    </p>
+
+```bash
+# Install via .NET Tool
+dotnet tool install -g NitroHttp
+
+# Verify installation & view help
+nhttp --help
+
+# Update to the latest release
+dotnet tool update -g NitroHttp
+
+# Uninstall if needed
+dotnet tool uninstall -g NitroHttp
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="general-usage">
+      General Usage &amp; Syntax Rules
+    </SectionHeading>
+    <p>The standard invocation syntax for all commands:</p>
+    
+```bash
+nhttp <command> --url <endpoint> [--body <json-or-file>]
+```
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">--url is required</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Every command requires a target URL. If no protocol is provided, https:// is automatically prepended.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">--body for payloads</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Required for post, put, and patch. Sent as application/json automatically.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Automatic file reading</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">If --body points to an existing file path (e.g. ./payload.json), nhttp reads and transmits file contents.</p>
+      </Card>
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Stats panel</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">Displays HTTP status code, response time in ms, payload byte size, and array/object item counts.</p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="get-requests">
+      GET Requests &amp; JSON Rendering
+    </SectionHeading>
+    <p>
+      Fetch endpoints with automatic formatted JSON tables and timing statistics:
+    </p>
+
+```bash
+# Standard GET command
+nhttp get --url https://jsonplaceholder.typicode.com/users
+
+# Using short alias and implicit https://
+nhttp g --url jsonplaceholder.typicode.com/posts
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="post-put-patch">
+      POST, PUT &amp; PATCH with Inline/File Payloads
+    </SectionHeading>
+    <p>
+      Transmit payloads using either inline JSON strings or existing local JSON file paths:
+    </p>
+
+```bash
+# POST with inline JSON string
+nhttp post --url https://jsonplaceholder.typicode.com/users --body '{"name":"Ada Lovelace"}'
+
+# POST with JSON file payload
+nhttp p --url jsonplaceholder.typicode.com/users --body ./payloads/user.json
+
+# PUT full update
+nhttp put --url https://jsonplaceholder.typicode.com/users/42 --body ./payloads/user-update.json
+
+# PATCH partial update
+nhttp patch --url https://jsonplaceholder.typicode.com/users/42 --body '{"title":"Lead Systems Engineer"}'
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="delete-requests">
+      DELETE Requests
+    </SectionHeading>
+    <p>Remove remote records and inspect status codes:</p>
+
+```bash
+# Standard DELETE
+nhttp delete --url https://jsonplaceholder.typicode.com/users/42
+
+# Using short alias
+nhttp del --url jsonplaceholder.typicode.com/posts/10
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="response-stats">
+      Response Output &amp; Stats Panel
+    </SectionHeading>
+    <p>
+      Every response renders with an integrated diagnostic panel:
+    </p>
+    <ul class="space-y-2 list-disc pl-5 text-sm text-text-muted">
+      <li><strong class="text-text">Status Text &amp; Code:</strong> Visual indicators for 2xx, 3xx, 4xx, and 5xx responses.</li>
+      <li><strong class="text-text">Latency &amp; Elapsed Time:</strong> High-precision millisecond timing for request lifecycle.</li>
+      <li><strong class="text-text">Payload Size:</strong> Human-readable byte formatting (e.g. <code class="text-[#299C45]">1.42 KB</code>).</li>
+      <li><strong class="text-text">Item Count:</strong> Automatic length detection for JSON arrays and object collections.</li>
+    </ul>
+  </section>
+</div>

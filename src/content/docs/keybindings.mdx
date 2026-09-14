@@ -1,0 +1,323 @@
+---
+title: "Default Keybindings"
+section: "Hyprland & Desktop"
+description: "Master key combination cheat sheet for window management, app launching, workspaces, and media control."
+lastUpdated: "2026"
+prev:
+  title: "Hyprland Overview"
+  href: "/docs/hyprland-overview"
+next:
+  title: "Custom Keybindings"
+  href: "/docs/custom-keybinds"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+import KeyCombo from "../../components/ui/KeyCombo.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Card from "../../components/ui/Card.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="modifier-key">
+      The SUPER Modifier Key
+    </SectionHeading>
+    <p>
+      In Nitro OS, <Kbd accent>SUPER</Kbd> (also known as the <strong class="text-text">Windows Key</strong> or <strong class="text-text">Mod4 / $mainMod</strong>) is the primary master modifier key used for almost all window management, application launching, and navigation shortcuts.
+    </p>
+    <Card class="flex items-center gap-3 text-xs font-mono">
+      <span class="text-text-dim">Master Modifier Definition:</span>
+      <code class="text-[#299C45] font-semibold">$mainMod = SUPER</code>
+    </Card>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="applications-launch">
+      Application Shortcuts
+    </SectionHeading>
+    <p>Essential developer shortcuts configured in <code class="text-[#299C45] font-mono">~/.config/hypr/nitro/keybindings.lua</code>:</p>
+    
+    <DataTable headers={["Keybinding", "Action", "Default Command"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Return"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Launch Terminal</td>
+        <td class="p-3.5 text-[#299C45]">alacritty</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Space"]} /></td>
+        <td class="p-3.5 font-semibold text-text">App Launcher</td>
+        <td class="p-3.5 text-[#299C45]">rofi -show drun</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "E"]} /></td>
+        <td class="p-3.5 font-semibold text-text">File Manager</td>
+        <td class="p-3.5 text-[#299C45]">dolphin / thunar</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "B"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Web Browser</td>
+        <td class="p-3.5 text-[#299C45]">firefox</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "T"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Messenger</td>
+        <td class="p-3.5 text-[#299C45]">telegram-desktop</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "O"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Notes / Obsidian</td>
+        <td class="p-3.5 text-[#299C45]">obsidian</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "W"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Wallpaper Switcher</td>
+        <td class="p-3.5 text-[#299C45]">~/.config/rofi/wallpaper.sh</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="window-management">
+      Window Management &amp; Controls
+    </SectionHeading>
+    <p>Manage active tiles, toggles, floating states, and fullscreen views:</p>
+    
+    <DataTable headers={["Keybinding", "Action", "Hyprland Dispatcher"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Q"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Kill / Close Active Window</td>
+        <td class="p-3.5 text-[#299C45]">killactive</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "F"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Fullscreen</td>
+        <td class="p-3.5 text-[#299C45]">fullscreen, 0</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "M"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Monocle / Maximize</td>
+        <td class="p-3.5 text-[#299C45]">fullscreen, 1</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "V"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Floating State</td>
+        <td class="p-3.5 text-[#299C45]">togglefloating</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "P"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Pseudo Tiling (Dwindle)</td>
+        <td class="p-3.5 text-[#299C45]">pseudo</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "J"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Split Direction</td>
+        <td class="p-3.5 text-[#299C45]">togglesplit</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "P"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Power &amp; Session Menu</td>
+        <td class="p-3.5 text-[#299C45]">rofi -show power</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="screenshots-utilities">
+      Screenshots &amp; Rofi Menus
+    </SectionHeading>
+    <DataTable headers={["Keybinding", "Action", "Command"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["Print"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Capture Full Screen</td>
+        <td class="p-3.5 text-[#299C45]">grimblast copy screen</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "S"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Area Selection to Clipboard</td>
+        <td class="p-3.5 text-[#299C45]">grimblast copy area</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Print"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Capture Active Window</td>
+        <td class="p-3.5 text-[#299C45]">grimblast copy active</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "C"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Clipboard History Manager</td>
+        <td class="p-3.5 text-[#299C45]">cliphist list | rofi -dmenu | cliphist decode | wl-copy</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="navigation-focus">
+      Directional Focus &amp; Navigation
+    </SectionHeading>
+    <DataTable headers={["Keybinding", "Action", "Hyprland Dispatcher"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Left / H"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Focus Left Window</td>
+        <td class="p-3.5 text-[#299C45]">movefocus, l</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Right / L"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Focus Right Window</td>
+        <td class="p-3.5 text-[#299C45]">movefocus, r</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Up / K"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Focus Up Window</td>
+        <td class="p-3.5 text-[#299C45]">movefocus, u</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Down / J"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Focus Down Window</td>
+        <td class="p-3.5 text-[#299C45]">movefocus, d</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "Left / H"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Swap / Move Window Left</td>
+        <td class="p-3.5 text-[#299C45]">movewindow, l</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "Right / L"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Swap / Move Window Right</td>
+        <td class="p-3.5 text-[#299C45]">movewindow, r</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "Up / K"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Swap / Move Window Up</td>
+        <td class="p-3.5 text-[#299C45]">movewindow, u</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "Down / J"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Swap / Move Window Down</td>
+        <td class="p-3.5 text-[#299C45]">movewindow, d</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Ctrl", "Left / H"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Resize Window Width (-20px)</td>
+        <td class="p-3.5 text-[#299C45]">resizeactive, -20 0</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Ctrl", "Right / L"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Resize Window Width (+20px)</td>
+        <td class="p-3.5 text-[#299C45]">resizeactive, 20 0</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="workspaces-nav">
+      Workspaces &amp; Special Scratchpad
+    </SectionHeading>
+    <DataTable headers={["Keybinding", "Action", "Hyprland Dispatcher"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "1 - 9"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Switch to Workspace 1 - 9</td>
+        <td class="p-3.5 text-[#299C45]">workspace, N</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "1 - 9"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Move Active Window to Workspace 1 - 9</td>
+        <td class="p-3.5 text-[#299C45]">movetoworkspace, N</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "S"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Special Scratchpad Terminal</td>
+        <td class="p-3.5 text-[#299C45]">togglespecialworkspace, magic</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "S"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Move Active Window to Special Scratchpad</td>
+        <td class="p-3.5 text-[#299C45]">movetoworkspace, special:magic</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Tab"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Cycle Through Recent Workspaces</td>
+        <td class="p-3.5 text-[#299C45]">workspace, previous</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Mouse Scroll"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Cycle Workspaces Next / Prev</td>
+        <td class="p-3.5 text-[#299C45]">workspace, e+1 / e-1</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="mouse-controls">
+      Mouse Window Controls
+    </SectionHeading>
+    <DataTable headers={["Keybinding", "Action", "Hyprland Dispatcher"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Left Click + Drag"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Move Floating Window</td>
+        <td class="p-3.5 text-[#299C45]">movewindow</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER", "Right Click + Drag"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Resize Floating Window</td>
+        <td class="p-3.5 text-[#299C45]">resizewindow</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["SUPER+Shift", "Right Click"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Toggle Window Pin / Always on Top</td>
+        <td class="p-3.5 text-[#299C45]">pin</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="media-hardware">
+      Media, Audio &amp; Brightness Keys
+    </SectionHeading>
+    <DataTable headers={["Keybinding", "Action", "Command"]}>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioRaiseVolume"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Volume Up (+5%)</td>
+        <td class="p-3.5 text-[#299C45]">pamixer -i 5</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioLowerVolume"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Volume Down (-5%)</td>
+        <td class="p-3.5 text-[#299C45]">pamixer -d 5</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioMute"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Mute / Unmute Audio</td>
+        <td class="p-3.5 text-[#299C45]">pamixer -t</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioMicMute"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Mute / Unmute Microphone</td>
+        <td class="p-3.5 text-[#299C45]">pamixer --default-source -t</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86MonBrightnessUp"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Brightness Up (+5%)</td>
+        <td class="p-3.5 text-[#299C45]">brightnessctl set +5%</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86MonBrightnessDown"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Brightness Down (-5%)</td>
+        <td class="p-3.5 text-[#299C45]">brightnessctl set 5%-</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioPlay"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Play / Pause Media</td>
+        <td class="p-3.5 text-[#299C45]">playerctl play-pause</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioNext"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Next Track</td>
+        <td class="p-3.5 text-[#299C45]">playerctl next</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 whitespace-nowrap"><KeyCombo keys={["XF86AudioPrev"]} /></td>
+        <td class="p-3.5 font-semibold text-text">Previous Track</td>
+        <td class="p-3.5 text-[#299C45]">playerctl previous</td>
+      </tr>
+    </DataTable>
+  </section>
+</div>

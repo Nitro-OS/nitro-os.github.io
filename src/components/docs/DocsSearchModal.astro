@@ -52,20 +52,20 @@ const searchIndex = Object.values(docsData).map(doc => ({
     <div class="px-4 py-2.5 bg-surface-2/60 border-t border-border flex items-center justify-between text-xs text-text-muted">
       <div class="flex items-center gap-3">
         <span class="flex items-center gap-1">
-          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">↑</kbd>
-          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">↓</kbd>
+          <kbd class="px-1.5 py-0.5 bg-surface rounded text-[10px] text-text-muted border border-border">↑</kbd>
+          <kbd class="px-1.5 py-0.5 bg-surface rounded text-[10px] text-text-muted border border-border">↓</kbd>
           <span>Navigate</span>
         </span>
         <span class="flex items-center gap-1">
-          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">Enter</kbd>
+          <kbd class="px-1.5 py-0.5 bg-surface rounded text-[10px] text-text-muted border border-border">Enter</kbd>
           <span>Select</span>
         </span>
         <span class="flex items-center gap-1">
-          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">Esc</kbd>
+          <kbd class="px-1.5 py-0.5 bg-surface rounded text-[10px] text-text-muted border border-border">Esc</kbd>
           <span>Close</span>
         </span>
       </div>
-      <span class="text-text-dim font-mono text-xs">Nitro OS Docs</span>
+      <span class="text-text-dim text-xs">Nitro OS Docs</span>
     </div>
   </div>
 </div>
@@ -209,7 +209,7 @@ const searchIndex = Object.values(docsData).map(doc => ({
           }"
         >
           <div class="flex items-center gap-2 min-w-0">
-            <span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-surface-2 text-text-muted font-mono text-[10px] shrink-0 border border-border">${item.section}</span>
+            <span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-surface-2 text-text-muted text-[10px] shrink-0 border border-border">${item.section}</span>
             <span class="search-title font-medium text-text ${idx === 0 ? 'text-[#299C45]' : ''} group-hover:text-[#299C45] transition-colors text-sm truncate">${item.title}</span>
           </div>
           <p class="text-xs text-text-dim mt-1 line-clamp-1 leading-relaxed">${item.snippet}</p>

@@ -1,0 +1,30 @@
+---
+title: "Custom Keybindings"
+section: "Hyprland & Desktop"
+description: "How to edit, create, and remap custom shortcuts in Hyprland configuration files."
+lastUpdated: "2026"
+prev:
+  title: "Default Keybindings"
+  href: "/docs/keybindings"
+next:
+  title: "Change Default Apps"
+  href: "/docs/change-default-apps"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="syntax-guide">
+      Adding Custom Keybindings
+    </SectionHeading>
+    <p>
+      Open <code class="text-[#299C45] font-mono">~/.config/hypr/nitro/keybindings.lua</code> in your editor and define new key combinations:
+    </p>
+
+```lua
+bind = $mainMod, B, exec, firefox
+bind = $mainMod SHIFT, S, exec, grimblast copy area
+```
+  </section>
+</div>

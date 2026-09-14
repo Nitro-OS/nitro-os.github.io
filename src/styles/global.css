@@ -14,8 +14,8 @@
   --color-accent-soft: #16291b;
 
   --font-display: "Orbitron", "Oxanium", sans-serif;
-  --font-body: "Space Grotesk", "IBM Plex Sans", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --animate-blink: blink 1.1s steps(1) infinite;
   --animate-scan: scan 8s linear infinite;

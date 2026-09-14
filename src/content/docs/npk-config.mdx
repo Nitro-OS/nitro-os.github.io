@@ -1,0 +1,37 @@
+---
+title: "NPK Configuration"
+section: "Nitro Package Manager"
+description: "Repository mirrors, parallel download tuning, signature checking, and cache locations."
+lastUpdated: "2026"
+prev:
+  title: "NPK CLI Commands"
+  href: "/docs/npk-commands"
+next:
+  title: "NPK Packaging Guide"
+  href: "/docs/npk-packaging"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="pacman-conf">
+      NPK &amp; Pacman Configuration (/etc/pacman.conf)
+    </SectionHeading>
+    <p>
+      System-wide package manager settings, mirror rankings, parallel download workers, and cache directories:
+    </p>
+
+```ini
+[general]
+mirror = "https://mirror.nitro-os.org"
+parallel_downloads = 8
+color = auto
+check_signatures = true
+
+[cache]
+dir = /var/cache/npk/pkg
+clean_on_upgrade = false
+```
+  </section>
+</div>

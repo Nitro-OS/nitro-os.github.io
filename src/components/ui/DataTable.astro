@@ -1,0 +1,23 @@
+---
+interface Props {
+  headers: string[];
+  class?: string;
+}
+
+const { headers, class: className = "" } = Astro.props;
+---
+
+<div class:list={["overflow-x-auto rounded-xl border border-border/60 bg-surface/50 overflow-hidden", className]}>
+  <table class="w-full text-left font-mono text-xs">
+    <thead class="border-b border-border/50 bg-surface-2/60 text-text-dim uppercase text-[11px]">
+      <tr>
+        {headers.map(header => (
+          <th class="p-3.5 font-semibold">{header}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border/40 text-text-muted">
+      <slot />
+    </tbody>
+  </table>
+</div>

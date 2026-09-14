@@ -1,0 +1,183 @@
+---
+title: "Hyprland CLI Commands"
+section: "Hyprland & Desktop"
+description: "Reference for hyprctl dispatches, JSON queries, runtime keyword switching, and socket scripting."
+lastUpdated: "2026"
+prev:
+  title: "Change Default Apps"
+  href: "/docs/change-default-apps"
+next:
+  title: "Hyprland Config & Monitors"
+  href: "/docs/hypr-config"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="hyprctl-overview">
+      Overview of hyprctl
+    </SectionHeading>
+    <p>
+      <strong class="text-white">hyprctl</strong> is the official command-line control and IPC interface for <strong class="text-[#299C45]">Hyprland</strong>. It allows you to trigger compositor actions, query internal state in structured JSON, dynamically adjust appearance keywords at runtime, and build custom desktop scripts.
+    </p>
+
+```bash
+# Standard invocation
+hyprctl [options] <command> [args]
+
+# Output pure JSON for shell scripting
+hyprctl -j <command>
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="dispatch-commands">
+      Dispatch Actions (Dispatches)
+    </SectionHeading>
+    <p>
+      Dispatcher commands execute immediate actions in the compositor (such as focusing, moving, or resizing windows):
+    </p>
+
+    <DataTable headers={["Command & Arguments", "Description", "Example"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch exec {"<app>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Launches any application inside the Hyprland context.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch exec alacritty</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch killactive</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Closes the currently focused active window immediately.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch killactive</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch togglefloating</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggles floating mode for the focused window.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch togglefloating</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch workspace {"<id|name>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Switches the active monitor to specified workspace.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch workspace 3</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch movetoworkspace {"<id>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Moves the focused window to another workspace.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch movetoworkspace 2</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl dispatch resizeactive {"<dx> <dy>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Resizes the active floating or tiled window by pixel delta.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl dispatch resizeactive 20 0</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl notify {"<icon> <ms> <color> <msg>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Displays a desktop notification box directly through compositor.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl notify 1 3000 "rgb(41,156,69)" "Nitro Ready!"</code></td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="json-queries">
+      Querying State (hyprctl -j)
+    </SectionHeading>
+    <p>
+      Query compositor internals in plain text or JSON format for parsing with <code class="text-white font-mono">jq</code> or shell scripts:
+    </p>
+
+    <DataTable headers={["Query Command", "JSON Flag", "Description", "Example"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl monitors</td>
+        <td class="p-3.5 font-mono text-text text-xs"><Kbd>-j</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Lists connected displays, resolutions, refresh rates, and scale factors.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl monitors -j | jq '.[].name'</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl activewindow</td>
+        <td class="p-3.5 font-mono text-text text-xs"><Kbd>-j</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Outputs detailed properties (class, title, address, PID) of focused window.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl activewindow -j</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl clients</td>
+        <td class="p-3.5 font-mono text-text text-xs"><Kbd>-j</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Lists all open windows across all workspaces with coordinates and geometry.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl clients -j | jq length</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl workspaces</td>
+        <td class="p-3.5 font-mono text-text text-xs"><Kbd>-j</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Lists all active workspaces, monitor bindings, and tile count.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl workspaces -j</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl version</td>
+        <td class="p-3.5 font-mono text-text text-xs">-</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Prints Hyprland version, commit hash, build flags, and compiler.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl version</code></td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="runtime-keywords">
+      Runtime Keyword Modification
+    </SectionHeading>
+    <p>
+      Use <code class="text-[#299C45] font-mono">hyprctl keyword</code> to adjust appearance, layout, or animations in memory without needing to restart Hyprland or edit files on disk:
+    </p>
+
+    <DataTable headers={["Keyword Variable", "Value Format", "Description", "Example"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">general:gaps_in</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<pixels>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Modifies inner gaps between tiled windows on the fly.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl keyword general:gaps_in 12</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">general:gaps_out</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<pixels>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Modifies outer gaps between screen edges and windows.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl keyword general:gaps_out 20</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">decoration:blur:enabled</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<true|false>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Enables or disables Kawase dual-filter background blur.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl keyword decoration:blur:enabled false</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">decoration:rounding</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<radius>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Dynamically changes corner rounding radius.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl keyword decoration:rounding 16</code></td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">hyprctl reload</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">-</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Re-parses and applies all configuration files immediately.</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">hyprctl reload</code></td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="ipc-socket-scripting">
+      IPC Event Socket Scripting
+    </SectionHeading>
+    <p>
+      Hyprland exposes UNIX domain sockets under <code class="text-white font-mono">$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/</code> for streaming compositor events in real time (e.g. workspace changes, window focus, monitor connect):
+    </p>
+
+```bash
+# Stream live events directly using socat
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+socat -U - UNIX-CONNECT:"$SOCKET" | while read -r line; do
+  echo "Event received: $line"
+done
+```
+  </section>
+</div>

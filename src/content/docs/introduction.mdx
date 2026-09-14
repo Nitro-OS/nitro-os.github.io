@@ -1,0 +1,109 @@
+---
+title: "Introduction to Nitro OS"
+section: "Getting Started"
+description: "A minimal, lightning-fast Linux distribution built for developers and power users. Wayland-native, Hyprland composited, with NitroVim and NPK out of the box."
+lastUpdated: "2026"
+prev:
+  title: "Home"
+  href: "/"
+next:
+  title: "Installation Guide"
+  href: "/docs/installation"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="what-is-nitro-os">
+      What is Nitro OS?
+    </SectionHeading>
+    <p>
+      <strong class="text-text">Nitro OS</strong> is a modern, minimal, high-performance Linux distribution engineered for developers, power users, and system minimalists. It combines an optimized Linux kernel, an accelerated Wayland desktop environment powered by <strong class="text-[#299C45]">Hyprland</strong>, and a developer toolkit featuring <strong class="text-text">NitroVim</strong>, <strong class="text-text">NitroPkg (npk)</strong>, and <strong class="text-text">NitroHttp</strong>.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="core-philosophy">
+      Core Philosophy
+    </SectionHeading>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-2">
+        <h3 class="text-base font-bold text-[#299C45] flex items-center gap-2">Speed First</h3>
+        <p class="text-xs text-text-dim leading-relaxed">Sub-second app launches, instant terminal responsiveness, and ultra-lean baseline RAM usage (~450MB on cold boot).</p>
+      </Card>
+      <Card class="space-y-2">
+        <h3 class="text-base font-bold text-[#299C45] flex items-center gap-2">Wayland Native</h3>
+        <p class="text-xs text-text-dim leading-relaxed">Silky 144Hz/240Hz tear-free compositor, smooth Bézier curves, and dual-kawase blur algorithms with minimal GPU overhead.</p>
+      </Card>
+      <Card class="space-y-2">
+        <h3 class="text-base font-bold text-[#299C45] flex items-center gap-2">NitroPkg (npk)</h3>
+        <p class="text-xs text-text-dim leading-relaxed">High-performance Rust-powered package manager for streamlined installation, system upgrades, and cache maintenance.</p>
+      </Card>
+      <Card class="space-y-2">
+        <h3 class="text-base font-bold text-[#299C45] flex items-center gap-2">Human-Readable Configs</h3>
+        <p class="text-xs text-text-dim leading-relaxed">Every dotfile in ~/.config/ is cleanly organized in Lua, documented, and ready for version control.</p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="key-features">
+      Key Features at a Glance
+    </SectionHeading>
+    <ul class="space-y-2.5 list-disc pl-5 text-text-muted">
+      <li><strong class="text-text">Out-of-the-Box Polish:</strong> Fully configured Waybar status bar, Rofi application menu, and wallpaper management.</li>
+      <li><strong class="text-text">Fastest Modal Editor:</strong> Pre-installed NitroVim with Treesitter, Lua snippets, and Mason LSP pre-wired.</li>
+      <li><strong class="text-text">Gaming &amp; Graphics Ready:</strong> Mesa drivers for AMD/Intel Vulkan acceleration, plus dedicated Nvidia Wayland driver profiles.</li>
+      <li><strong class="text-text">Rolling-Release Stability:</strong> Up-to-date Arch Linux base with the latest Linux kernel and PipeWire audio stack.</li>
+    </ul>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="system-stack">
+      System Architecture &amp; Stack
+    </SectionHeading>
+    <DataTable headers={["Component", "Technology", "Role"]}>
+      <tr>
+        <td class="p-3.5 font-semibold text-[#299C45]">Compositor</td>
+        <td class="p-3.5 text-text">Hyprland (Wayland)</td>
+        <td class="p-3.5 text-text-muted">Dynamic tiling, smooth animations, multi-monitor</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-semibold text-[#299C45]">Package Manager</td>
+        <td class="p-3.5 text-text">NitroPkg (npk)</td>
+        <td class="p-3.5 text-text-muted">Rust CLI for package install, remove, upgrade &amp; cache cleanup</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-semibold text-[#299C45]">Editor</td>
+        <td class="p-3.5 text-text">NitroVim (Neovim)</td>
+        <td class="p-3.5 text-text-muted">Keyboard-driven modal development IDE</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-semibold text-[#299C45]">Status Bar</td>
+        <td class="p-3.5 text-text">Waybar</td>
+        <td class="p-3.5 text-text-muted">Hardware stats, workspaces, volume &amp; network</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-semibold text-[#299C45]">Audio</td>
+        <td class="p-3.5 text-text">PipeWire + WirePlumber</td>
+        <td class="p-3.5 text-text-muted">Low-latency pro audio &amp; portal screen sharing</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="next-steps">
+      Next Steps
+    </SectionHeading>
+    <p>Ready to install or test Nitro OS? Head directly to our installation guide:</p>
+    <a href="/docs/installation" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#299C45] hover:bg-[#217D37] text-white font-semibold font-mono text-xs transition shadow-lg group">
+      <span>Go to Installation Guide</span>
+      <svg class="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </section>
+</div>

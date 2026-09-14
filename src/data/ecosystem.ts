@@ -10,7 +10,7 @@ export const ecosystemUtilities: EcosystemUtility[] = [
   },
   {
     title: "System configuration",
-    desc: "Plain-text configs with sane structure — readable, versionable, portable.",
+    desc: "Plain-text configs with sane structure: readable, versionable, and portable.",
   },
   {
     title: "Developer workflow",

@@ -72,19 +72,18 @@ body {
 }
 
 html.light body {
-  background-color: #f6f7fb;
+  background-color: #f8fafc;
   background-image:
-    radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.15), transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.12), transparent 50%),
-    radial-gradient(circle at 20% 85%, rgba(132, 204, 22, 0.1), transparent 55%),
-    radial-gradient(circle at 80% 80%, rgba(74, 222, 128, 0.12), transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.06), transparent 70%);
+    radial-gradient(circle at 15% 15%, rgba(41, 156, 69, 0.04), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(41, 156, 69, 0.03), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(41, 156, 69, 0.02), transparent 50%),
+    linear-gradient(to bottom, #ffffff, #f8fafc);
   background-attachment: fixed;
 }
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: #ffffff;
 }
 
 * {
@@ -101,8 +100,7 @@ article h4,
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -125,16 +123,23 @@ article h4,
     radial-gradient(circle at 85% 0%, rgba(41, 156, 69, 0.04), transparent 40%);
 }
 
+html.light .noise-veil {
+  background-image: radial-gradient(circle at 20% 20%, rgba(41, 156, 69, 0.025), transparent 45%),
+    radial-gradient(circle at 85% 0%, rgba(41, 156, 69, 0.015), transparent 40%);
+}
+
 html.light {
-  --color-bg: #f6f7fb;
+  --color-bg: #f8fafc;
   --color-surface: #ffffff;
-  --color-surface-2: #edf1f7;
-  --color-border: #dcdfe6;
-  --color-border-strong: #b0b5c0;
-  --color-text: #10141d;
-  --color-text-muted: #4a5160;
-  --color-text-dim: #767e8d;
-  --color-accent-soft: #e2f6e7;
+  --color-surface-2: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-dim: #64748b;
+  --color-accent: #16a34a;
+  --color-accent-dim: #15803d;
+  --color-accent-soft: #dcfce7;
   color-scheme: light;
 }
 

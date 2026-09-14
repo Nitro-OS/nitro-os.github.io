@@ -6,7 +6,7 @@ import { whyNitroRows as rows } from "../../data/whyNitro";
   <div class="mx-auto max-w-6xl">
     <div class="mb-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
       <div>
-        <p class="mb-3 font-mono text-[13.5px] tracking-wide text-accent">Why Nitro OS</p>
+        <p class="mb-3 text-[13.5px] font-semibold tracking-wide text-accent">Why Nitro OS</p>
         <h2 class="text-balance font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           A system that respects your time.
         </h2>
@@ -22,7 +22,7 @@ import { whyNitroRows as rows } from "../../data/whyNitro";
       {
         rows.map((row) => (
           <div class="grid gap-2 py-6 sm:grid-cols-[140px_1fr_1.2fr] sm:items-baseline sm:gap-6">
-            <span class="font-mono text-[13.5px] text-text-dim">{row.key}</span>
+            <span class="text-[13.5px] text-text-dim font-medium">{row.key}</span>
             <h3 class="font-display text-[18px] font-medium text-text">{row.title}</h3>
             <p class="text-[15.5px] leading-relaxed text-text-muted">{row.desc}</p>
           </div>

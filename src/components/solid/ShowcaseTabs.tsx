@@ -70,7 +70,7 @@ export default function ShowcaseTabs() {
               role="tab"
               aria-selected={activeTab() === tab.id}
               onClick={() => setActiveTab(tab.id)}
-              class={`w-full sm:w-auto rounded-xl sm:rounded-full px-5 py-2.5 sm:py-2 font-mono text-[13.5px] tracking-tight text-left sm:text-center transition-all duration-200 ${activeTab() === tab.id
+              class={`w-full sm:w-auto rounded-xl sm:rounded-full px-5 py-2.5 sm:py-2 text-[13.5px] font-medium tracking-tight text-left sm:text-center transition-all duration-200 ${activeTab() === tab.id
                 ? "bg-accent text-white font-semibold shadow-sm"
                 : "text-text-muted hover:text-text hover:bg-surface-2/40 sm:hover:bg-transparent"
                 }`}
@@ -89,7 +89,7 @@ export default function ShowcaseTabs() {
                 {(sub) => (
                   <button
                     onClick={() => setSubtab(activeTab(), sub.id)}
-                    class={`px-3 py-1 rounded-full text-[11.5px] font-mono transition-all duration-200 ${currentSubtabObj()?.id === sub.id
+                    class={`px-3 py-1 rounded-full text-[11.5px] font-medium transition-all duration-200 ${currentSubtabObj()?.id === sub.id
                       ? "bg-accent text-white font-semibold"
                       : "text-text-muted hover:text-text"
                       }`}

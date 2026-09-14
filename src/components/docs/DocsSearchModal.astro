@@ -1,0 +1,224 @@
+---
+import { docsData } from "../../data/docsContent";
+
+const searchIndex = Object.values(docsData).map(doc => ({
+  slug: doc.slug,
+  title: doc.title,
+  section: doc.section,
+  description: doc.description,
+  headings: doc.headings.map(h => ({ id: h.id, text: h.text }))
+}));
+---
+
+<div 
+  id="search-modal" 
+  class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-start justify-center pt-20 px-4 transition-opacity"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search Documentation"
+>
+  <div 
+    id="search-modal-container"
+    class="w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-200"
+  >
+    <div class="flex items-center px-4 py-3.5 border-b border-border gap-3 bg-surface">
+      <svg class="w-5 h-5 text-text-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input 
+        id="search-input"
+        type="text" 
+        placeholder="Type to search documentation, keybindings, npk, hyprland..." 
+        class="w-full bg-transparent border-0 text-text placeholder-text-dim text-base focus:outline-none focus:ring-0 ring-0 outline-none"
+        style="outline: none !important; box-shadow: none !important; border: none !important;"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button 
+        id="close-search-btn"
+        type="button" 
+        class="p-1.5 text-text-muted hover:text-text rounded-lg hover:bg-surface-2 transition-colors cursor-pointer shrink-0"
+        aria-label="Close search"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="search-results-list" class="overflow-y-auto p-3 space-y-1 max-h-[60vh]">
+    </div>
+
+    <div class="px-4 py-2.5 bg-surface-2/60 border-t border-border flex items-center justify-between text-xs text-text-muted">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1">
+          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">↑</kbd>
+          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">↓</kbd>
+          <span>Navigate</span>
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">Enter</kbd>
+          <span>Select</span>
+        </span>
+        <span class="flex items-center gap-1">
+          <kbd class="px-1.5 py-0.5 bg-surface rounded font-mono text-[10px] text-text-muted border border-border">Esc</kbd>
+          <span>Close</span>
+        </span>
+      </div>
+      <span class="text-text-dim font-mono text-xs">Nitro OS Docs</span>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ searchIndex }}>
+  const modal = document.getElementById("search-modal");
+  const input = document.getElementById("search-input");
+  const resultsContainer = document.getElementById("search-results-list");
+  const closeBtn = document.getElementById("close-search-btn");
+  const triggerBtn = document.getElementById("search-trigger-btn");
+  const mobileTriggerBtn = document.getElementById("mobile-search-btn");
+
+  let selectedIndex = 0;
+  let currentResults = [];
+
+  function openSearch() {
+    modal?.classList.remove("hidden");
+    modal?.classList.add("flex");
+    input?.focus();
+    renderResults(input?.value || "");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeSearch() {
+    modal?.classList.add("hidden");
+    modal?.classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  triggerBtn?.addEventListener("click", openSearch);
+  mobileTriggerBtn?.addEventListener("click", openSearch);
+  closeBtn?.addEventListener("click", closeSearch);
+
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeSearch();
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      if (modal?.classList.contains("hidden")) {
+        openSearch();
+      } else {
+        closeSearch();
+      }
+    } else if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+      closeSearch();
+    } else if (!modal?.classList.contains("hidden")) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, currentResults.length - 1);
+        highlightSelected();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, 0);
+        highlightSelected();
+      } else if (e.key === "Enter" && currentResults.length > 0) {
+        e.preventDefault();
+        const activeLink = currentResults[selectedIndex]?.href;
+        if (activeLink) {
+          window.location.href = activeLink;
+        }
+      }
+    }
+  });
+
+  function highlightSelected() {
+    const items = resultsContainer?.querySelectorAll(".search-result-item");
+    items?.forEach((item, idx) => {
+      if (idx === selectedIndex) {
+        item.classList.add("bg-surface-2", "text-text");
+        const titleEl = item.querySelector(".search-title");
+        if (titleEl) titleEl.classList.add("text-[#299C45]");
+        item.scrollIntoView({ block: "nearest" });
+      } else {
+        item.classList.remove("bg-surface-2", "text-text");
+        const titleEl = item.querySelector(".search-title");
+        if (titleEl) titleEl.classList.remove("text-[#299C45]");
+      }
+    });
+  }
+
+  function renderResults(query) {
+    const trimmed = query.trim().toLowerCase();
+    currentResults = [];
+
+    if (!trimmed) {
+      searchIndex.forEach(doc => {
+        currentResults.push({
+          title: doc.title,
+          section: doc.section,
+          snippet: doc.description,
+          href: `/docs/${doc.slug}`
+        });
+      });
+    } else {
+      searchIndex.forEach(doc => {
+        if (doc.title.toLowerCase().includes(trimmed) || doc.description.toLowerCase().includes(trimmed)) {
+          currentResults.push({
+            title: doc.title,
+            section: doc.section,
+            snippet: doc.description,
+            href: `/docs/${doc.slug}`
+          });
+        }
+        
+        doc.headings.forEach(heading => {
+          if (heading.text.toLowerCase().includes(trimmed)) {
+            currentResults.push({
+              title: `${doc.title} > ${heading.text}`,
+              section: doc.section,
+              snippet: `Jump directly to the "${heading.text}" section in ${doc.title}`,
+              href: `/docs/${doc.slug}#${heading.id}`
+            });
+          }
+        });
+      });
+    }
+
+    if (currentResults.length === 0) {
+      if (resultsContainer) {
+        resultsContainer.innerHTML = `
+          <div class="py-8 text-center text-text-muted">
+            <p class="text-sm font-medium">No documentation results found for "${query}"</p>
+            <p class="text-xs text-text-dim mt-1">Try searching for keywords like "install", "keybindings", "npk", "hyprctl", "nitrovim", or "gpu".</p>
+          </div>
+        `;
+      }
+      return;
+    }
+
+    selectedIndex = 0;
+    if (resultsContainer) {
+      resultsContainer.innerHTML = currentResults.map((item, idx) => `
+        <a 
+          href="${item.href}" 
+          class="search-result-item block px-4 py-2.5 rounded-xl hover:bg-surface-2/70 transition-colors group ${
+            idx === 0 ? 'bg-surface-2 text-text' : 'text-text-muted'
+          }"
+        >
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xs font-semibold uppercase px-2 py-0.5 rounded bg-surface-2 text-text-muted font-mono text-[10px] shrink-0 border border-border">${item.section}</span>
+            <span class="search-title font-medium text-text ${idx === 0 ? 'text-[#299C45]' : ''} group-hover:text-[#299C45] transition-colors text-sm truncate">${item.title}</span>
+          </div>
+          <p class="text-xs text-text-dim mt-1 line-clamp-1 leading-relaxed">${item.snippet}</p>
+        </a>
+      `).join("");
+    }
+  }
+
+  input?.addEventListener("input", (e) => {
+    renderResults(e.target.value);
+  });
+</script>

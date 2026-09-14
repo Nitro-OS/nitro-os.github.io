@@ -1,0 +1,35 @@
+---
+import Layout from "./Layout.astro";
+import DocsHeader from "../components/docs/DocsHeader.astro";
+import DocsSidebar from "../components/docs/DocsSidebar.astro";
+import DocsTOC from "../components/docs/DocsTOC.astro";
+import DocsSearchModal from "../components/docs/DocsSearchModal.astro";
+import { docsData } from "../data/docsContent";
+import "../styles/global.css";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const currentDoc = docsData[slug] || docsData["introduction"];
+const pageTitle = `${currentDoc.title} | Nitro OS Documentation`;
+---
+
+<Layout title={pageTitle} description={currentDoc.description}>
+  <div class="min-h-screen bg-bg text-text flex flex-col antialiased selection:bg-[#299C45]/30 selection:text-white transition-colors duration-150">
+    <DocsHeader />
+
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex-1 flex gap-8">
+      <DocsSidebar currentSlug={slug} />
+
+      <main class="flex-1 py-8 overflow-hidden min-w-0">
+        <slot />
+      </main>
+
+      <DocsTOC headings={currentDoc.headings} slug={slug} />
+    </div>
+
+    <DocsSearchModal />
+  </div>
+</Layout>

@@ -1,0 +1,202 @@
+---
+title: "Hyprland Config & Monitors"
+section: "Hyprland & Desktop"
+description: "Configure multi-monitor layouts, HDMI displays, scaling factors, wallpapers, blurs, and startup daemons."
+lastUpdated: "2026"
+prev:
+  title: "Hyprland CLI Commands"
+  href: "/docs/hypr-commands"
+next:
+  title: "NPK Overview"
+  href: "/docs/npk-overview"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="modular-lua-structure">
+      Modular Configuration Architecture
+    </SectionHeading>
+    <p>
+      In <strong class="text-white">Nitro OS</strong>, Hyprland settings are cleanly organized into modular configuration files under <code class="text-[#299C45] font-mono">~/.config/hypr/</code>:
+    </p>
+
+```text
+~/.config/hypr/
+├── hyprland.conf            # Main compositor entrypoint & source loader
+├── nitro/
+│   ├── monitors.conf       # Multi-monitor layouts, HDMI, DisplayPort & scaling
+│   ├── monitors.lua        # Lua module for dynamic monitor detection
+│   ├── keybindings.lua     # Application & window management shortcuts
+│   ├── autostart.lua       # Daemons (Waybar, Hyprpaper, Mako, Cliphist)
+│   ├── look.lua            # Gaps, border gradients, blurs & rounding
+│   ├── animations.lua      # Bézier curves & window transition physics
+│   └── input.lua           # Touchpad gestures, keyboard layout & mouse speeds
+└── scripts/                # Dynamic wallpaper and screenshot utilities
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="monitor-settings">
+      Monitors &amp; HDMI Setup (nitro/monitors.conf &amp; monitors.lua)
+    </SectionHeading>
+    <p>
+      Whether you are connecting an external <strong class="text-white">HDMI monitor</strong>, dual DisplayPort desk setup, or 4K ultrawide screen, configuring monitors in Nitro OS is done through declarative rules.
+    </p>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Step 1: Discover Connected Monitor Names</h3>
+      <p class="text-sm text-text-dim">Run the query command in your terminal to see all plugged display ports:</p>
+
+```bash
+hyprctl monitors
+```
+    </div>
+
+    <div class="space-y-3 pt-2">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Monitor Syntax Breakdown</h3>
+      <DataTable headers={["Parameter", "Description", "Example Value"]}>
+        <tr>
+          <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">name</td>
+          <td class="p-3.5 text-text-muted text-xs font-sans">Connector port (e.g. HDMI-A-1, DP-1, eDP-1, or empty for fallback)</td>
+          <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">HDMI-A-1</code></td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">resolution@rate</td>
+          <td class="p-3.5 text-text-muted text-xs font-sans">Target resolution and refresh rate in Hz</td>
+          <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">1920x1080@144 or 2560x1440@144</code></td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">position</td>
+          <td class="p-3.5 text-text-muted text-xs font-sans">Offset coordinate XxY (e.g. 0x0 for primary, 1920x0 for right)</td>
+          <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">1920x0 or auto</code></td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">scale</td>
+          <td class="p-3.5 text-text-muted text-xs font-sans">Display scaling multiplier (1 for 100%, 1.25, 1.5 for HiDPI, 2 for 4K)</td>
+          <td class="p-3.5 font-mono text-text-dim text-xs"><code class="text-white">1 or 1.25</code></td>
+        </tr>
+      </DataTable>
+    </div>
+
+    <div class="space-y-3 pt-2">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Step 2: Add HDMI &amp; Multi-Display Rules in ~/.config/hypr/nitro/monitors.conf</h3>
+      <p class="text-sm text-text-dim">Open <code class="text-white font-mono">~/.config/hypr/nitro/monitors.conf</code> and choose your setup layout:</p>
+
+```text
+monitor = eDP-1, 1920x1080@60, 0x0, 1
+monitor = HDMI-A-1, 1920x1080@144, 1920x0, 1
+monitor = , preferred, auto, 1
+```
+    </div>
+
+    <div class="space-y-3 pt-2">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Lua-Based Dynamic Monitors (~/.config/hypr/nitro/monitors.lua)</h3>
+      <p class="text-sm text-text-dim">If using the Nitro OS Lua module loader, monitors can be defined programmatically:</p>
+
+```lua
+local hl = require("nitro.hypr")
+
+hl.monitor({
+  name = "eDP-1",
+  resolution = "1920x1080@60",
+  position = "0x0",
+  scale = 1.0,
+})
+
+hl.monitor({
+  name = "HDMI-A-1",
+  resolution = "1920x1080@144",
+  position = "1920x0",
+  scale = 1.0,
+})
+
+hl.monitor_fallback("preferred", "auto", 1.0)
+```
+    </div>
+
+    <div class="space-y-3 pt-2">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Step 3: Apply Changes Instantly</h3>
+      <p class="text-sm text-text-dim">You do not need to log out or reboot. Reload the compositor configuration live:</p>
+
+```bash
+hyprctl reload
+```
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="workspace-binding">
+      Binding Workspaces to HDMI &amp; External Displays
+    </SectionHeading>
+    <p>
+      You can pin specific workspaces so code editors open on your primary monitor and communication apps stay on your HDMI display:
+    </p>
+
+```text
+workspace = 1, monitor:eDP-1, default:true
+workspace = 2, monitor:eDP-1
+workspace = 3, monitor:eDP-1
+
+workspace = 6, monitor:HDMI-A-1, default:true
+workspace = 7, monitor:HDMI-A-1
+workspace = 8, monitor:HDMI-A-1
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="autostart-daemons">
+      Autostart Daemons (nitro/autostart.lua)
+    </SectionHeading>
+    <p>
+      System services, background wallpaper daemons, clipboard history, and authentication agents:
+    </p>
+
+```text
+exec-once = waybar
+exec-once = hyprpaper
+exec-once = mako
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec-once = wl-paste --type text --watch cliphist store
+exec-once = wl-paste --type image --watch cliphist store
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="appearance-look">
+      Appearance, Gaps &amp; Blurs (nitro/look.lua)
+    </SectionHeading>
+    <p>
+      Customizing active window borders, Kawase background blurs, and corner rounding:
+    </p>
+
+```text
+general {
+    gaps_in = 6
+    gaps_out = 12
+    border_size = 2
+    col.active_border = rgb(299C45) rgb(16291b) 45deg
+    col.inactive_border = rgba(303a33aa)
+    layout = dwindle
+}
+
+decoration {
+    rounding = 12
+    blur {
+        enabled = true
+        size = 6
+        passes = 3
+        new_optimizations = true
+    }
+    shadow {
+        enabled = true
+        range = 20
+        render_power = 3
+        color = rgba(0, 0, 0, 0.4)
+    }
+}
+```
+  </section>
+</div>

@@ -1,0 +1,42 @@
+---
+title: "Troubleshooting & FAQ"
+section: "Advanced Guides"
+description: "Fix black screen on boot, audio issues, keybind conflicts, graphics crashes, and factory reset configurations."
+lastUpdated: "2026"
+prev:
+  title: "Desktop Environments"
+  href: "/docs/desktop-environments"
+next:
+  title: "Home"
+  href: "/"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+import KeyCombo from "../../components/ui/KeyCombo.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="black-screen-fix">
+      Hyprland Black Screen Recovery
+    </SectionHeading>
+    <p>
+      Switch to virtual terminal TTY3 using <KeyCombo keys={["Ctrl", "Alt", "F3"]} />, log in, and check logs:
+    </p>
+
+```bash
+cat /tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="restore-dotfiles">
+      Restoring Factory Default Dotfiles
+    </SectionHeading>
+
+```bash
+# Restore Hyprland configuration
+cp -r /etc/skel/.config/hypr ~/.config/
+```
+  </section>
+</div>

@@ -15,6 +15,7 @@ import SectionHeading from "../../components/ui/SectionHeading.astro";
 import Card from "../../components/ui/Card.astro";
 import Kbd from "../../components/ui/Kbd.astro";
 import KeyCombo from "../../components/ui/KeyCombo.astro";
+import { Download } from "@lucide/astro";
 
 <div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
   <section class="space-y-4">
@@ -58,8 +59,22 @@ import KeyCombo from "../../components/ui/KeyCombo.astro";
       Download &amp; Flash ISO
     </SectionHeading>
     <p>
-      Download the latest release ISO from GitHub Releases or the official download mirror. Verify SHA256 checksums and flash to a USB flash drive:
+      Download the latest release ISO image or obtain it directly from the download mirror. Verify SHA256 checksums and flash to a USB flash drive:
     </p>
+
+    <div class="p-4 rounded-xl bg-surface/60 border border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h4 class="text-sm font-semibold text-text">Nitro OS Latest ISO (x86_64)</h4>
+        <p class="text-xs text-text-dim mt-0.5">Direct ISO image download ready for USB flashing</p>
+      </div>
+      <a 
+        href="https://drive.google.com/uc?export=download&id=1JimgDkKyEdvYtg8S6cyOxs3KPt5vRohp" 
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#299C45] hover:bg-[#217D37] text-white text-xs font-semibold font-mono transition-all shadow-sm shrink-0"
+      >
+        <Download class="w-4 h-4" />
+        Direct Download ISO
+      </a>
+    </div>
 
 ```bash
 # Verify ISO Checksum

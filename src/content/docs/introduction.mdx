@@ -14,6 +14,7 @@ next:
 import SectionHeading from "../../components/ui/SectionHeading.astro";
 import Card from "../../components/ui/Card.astro";
 import DataTable from "../../components/ui/DataTable.astro";
+import { ArrowRight } from "@lucide/astro";
 
 <div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
   <section class="space-y-4">
@@ -101,9 +102,7 @@ import DataTable from "../../components/ui/DataTable.astro";
     <p>Ready to install or test Nitro OS? Head directly to our installation guide:</p>
     <a href="/docs/installation" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#299C45] hover:bg-[#217D37] text-white font-semibold font-mono text-xs transition shadow-lg group">
       <span>Go to Installation Guide</span>
-      <svg class="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
+      <ArrowRight class="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
     </a>
   </section>
 </div>

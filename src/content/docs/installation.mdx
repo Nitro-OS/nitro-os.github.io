@@ -99,35 +99,14 @@ sudo dd if=nitro-os-latest-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sy
       Running Nitro Installer
     </SectionHeading>
     <p>
-      Once inside the live desktop session, press <KeyCombo keys={["SUPER", "Space"]} /> to open the application launcher, then search for and click <strong class="text-white">Install NitroOS</strong> to start the graphical installer.
+      Once inside the live desktop session, press <KeyCombo keys={["SUPER", "Space"]} /> to open the application launcher, then search for and launch <strong class="text-white">Install NitroOS</strong> to start the graphical installer.
     </p>
-  </section>
-
-  <section class="space-y-4">
-    <SectionHeading id="partitioning-guide">
-      Partitioning &amp; File Systems
-    </SectionHeading>
     <p>
-      The installer allows you to choose automated whole-disk partitioning (EXT4 / Btrfs) or manual partition layout with <code class="text-[#299C45] font-mono">cfdisk</code>:
+      The installer handles everything automatically:
     </p>
-
-```bash
-# EFI System Partition: /boot/efi (512MB FAT32)
-# Root Partition: / (Btrfs or EXT4)
-# Swap: (Optional zram / swapfile)
-```
-  </section>
-
-  <section class="space-y-4">
-    <SectionHeading id="first-boot">
-      Rebooting into Nitro OS
-    </SectionHeading>
-    <p>
-      Once installation finishes, remove the USB drive and reboot:
-    </p>
-
-```bash
-sudo reboot
-```
+    <ul class="list-disc pl-5 space-y-2 text-text-muted">
+      <li><strong class="text-text font-medium">Disk Partitioning:</strong> Automated whole-disk partitioning and file system setup (as well as custom manual layout options) are built directly into the GUI installer.</li>
+      <li><strong class="text-text font-medium">Automatic Reboot:</strong> Once installation completes, the installer offers an automatic reboot into your new Nitro OS installation (remove the USB drive when prompted).</li>
+    </ul>
   </section>
 </div>

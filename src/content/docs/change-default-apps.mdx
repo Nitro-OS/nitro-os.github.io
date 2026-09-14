@@ -1,0 +1,47 @@
+---
+title: "Change Default Apps"
+section: "Hyprland & Desktop"
+description: "Swap default applications including terminal emulator, web browser, file manager, and launcher."
+lastUpdated: "2026"
+prev:
+  title: "Custom Keybindings"
+  href: "/docs/custom-keybinds"
+next:
+  title: "Hyprland CLI Commands"
+  href: "/docs/hypr-commands"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="app-variables">
+      Configuring App Variables in Lua
+    </SectionHeading>
+    <p>
+      At the top of <code class="text-[#299C45] font-mono">~/.config/hypr/nitro/keybindings.lua</code>, you will find clean central variables for all default desktop applications:
+    </p>
+
+```lua
+local terminal         = "alacritty"
+local fileManager      = "dolphin"
+local menu             = "~/.config/rofi/launchers/launcher.sh"
+local browser          = "firefox"
+local messenger        = "Telegram"
+local camera           = "io.github.cosmic_utils.camera"
+local obsidian         = "md.obsidian.Obsidian"
+local wallpaperManager = "~/.config/rofi/wallpaper/wallpaper.sh"
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="changing-terminal">
+      Changing Default Terminal (Alacritty)
+    </SectionHeading>
+    <p>To switch from Alacritty to Kitty, Ghostty, or Foot, change the <code class="text-text font-mono">terminal</code> variable:</p>
+
+```lua
+local terminal = "kitty"
+```
+  </section>
+</div>

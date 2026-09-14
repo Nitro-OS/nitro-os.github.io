@@ -1,0 +1,16 @@
+---
+interface Props {
+  accent?: boolean;
+  flat?: boolean;
+  class?: string;
+}
+
+const { accent = false, flat = false, class: className = "" } = Astro.props;
+---
+
+<kbd class:list={[
+  flat ? "kbd-flat" : (accent ? "kbd-accent" : "kbd-3d"),
+  className
+]}>
+  <slot />
+</kbd>

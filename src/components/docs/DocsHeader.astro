@@ -1,0 +1,82 @@
+---
+import Logo from "../ui/Logo.astro";
+import ThemeToggle from "../solid/ThemeToggle.tsx";
+---
+
+<header class="sticky top-0 z-40 w-full bg-transparent pt-3 pb-2 px-3 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto h-14 flex items-center justify-between gap-2 sm:gap-4 md:gap-6 rounded-full border border-border/70 bg-surface/80 px-3 sm:px-5 md:px-6 backdrop-blur-xl transition-colors">
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <button 
+        id="open-sidebar-btn" 
+        type="button" 
+        class="lg:hidden p-2 -ml-1 rounded-full text-text-muted hover:text-text hover:bg-surface-2 focus:outline-none focus:ring-2 focus:ring-[#299C45] transition-colors"
+        aria-label="Open Documentation Sidebar"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <a href="/" class="flex items-center gap-2 group shrink-0">
+        <Logo />
+        <span class="hidden sm:inline-flex px-2 py-0.5 text-[11px] font-semibold rounded-full bg-[#299C45]/15 text-[#299C45] border border-[#299C45]/30 items-center font-mono">
+          Docs
+        </span>
+      </a>
+    </div>
+
+    <div class="flex-1 max-w-xs md:max-w-sm lg:max-w-md mx-auto hidden sm:block">
+      <button 
+        id="search-trigger-btn"
+        type="button"
+        class="w-full flex items-center justify-between px-3.5 py-1.5 text-xs text-text-muted bg-surface-2/60 hover:bg-surface-2 border border-border hover:border-border-strong rounded-full transition-all group cursor-pointer"
+      >
+        <span class="flex items-center gap-2 min-w-0">
+          <svg class="w-3.5 h-3.5 text-text-muted group-hover:text-[#299C45] transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span class="text-xs text-text-muted whitespace-nowrap truncate">Search docs...</span>
+        </span>
+        <span class="flex items-center gap-1 shrink-0 ml-2">
+          <kbd class="px-1.5 py-0.5 text-[10px] font-mono bg-surface rounded-md border border-border text-text-muted">Ctrl</kbd>
+          <kbd class="px-1.5 py-0.5 text-[10px] font-mono bg-surface rounded-md border border-border text-text-muted">K</kbd>
+        </span>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+      <button 
+        id="mobile-search-btn"
+        type="button"
+        class="sm:hidden p-2 rounded-full text-text-muted hover:text-text hover:bg-surface-2 transition-colors"
+        aria-label="Search Documentation"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+
+      <nav class="hidden xl:flex items-center gap-1 text-sm font-medium text-text-muted font-mono text-[13px]">
+        <a href="/" class="px-2.5 py-1 rounded-full hover:text-text hover:bg-surface-2 transition">Home</a>
+        <a href="/#features" class="px-2.5 py-1 rounded-full hover:text-text hover:bg-surface-2 transition">Features</a>
+        <a href="/#tools" class="px-2.5 py-1 rounded-full hover:text-text hover:bg-surface-2 transition">Tools</a>
+      </nav>
+
+      <div class="h-4 w-px bg-border hidden xl:block"></div>
+
+      <ThemeToggle client:load />
+
+      <a 
+        href="https://github.com/Nitro-OS/nitro-os.github.io" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="GitHub Repository"
+        class="flex h-9 w-9 items-center justify-center rounded-full bg-surface hover:bg-surface-2 border border-border text-text hover:text-[#299C45] hover:border-[#299C45]/50 transition-all shrink-0 shadow-sm"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>

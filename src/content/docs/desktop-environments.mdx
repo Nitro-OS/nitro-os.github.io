@@ -1,0 +1,161 @@
+---
+title: "Desktop Environments"
+section: "Advanced Guides"
+description: "How to install KDE Plasma 6 or GNOME on Nitro OS, configure display managers (SDDM/GDM), and switch sessions."
+lastUpdated: "2026"
+prev:
+  title: "Screen Sharing & Portals"
+  href: "/docs/screen-sharing"
+next:
+  title: "Troubleshooting & FAQ"
+  href: "/docs/troubleshooting"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="overview">
+      Overview &amp; Desktop Options
+    </SectionHeading>
+    <p>
+      While <strong class="text-white">Nitro OS</strong> comes standard with a tuned <strong class="text-[#299C45]">Hyprland</strong> tiling compositor, the operating system is fully compatible with major desktop environments including <strong class="text-white">KDE Plasma 6</strong> and <strong class="text-white">GNOME</strong>. You can install them alongside Hyprland or use them as your primary daily desktop.
+    </p>
+
+    <DataTable headers={["Environment", "Architecture", "Idle RAM", "Repository Status", "Best For"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">Hyprland</td>
+        <td class="p-3.5 font-mono text-text text-xs">Tiling Wayland Compositor</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">~400 MB</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Pre-installed (Default)</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Keyboard-driven modal productivity</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">KDE Plasma 6</td>
+        <td class="p-3.5 font-mono text-text text-xs">Full Desktop Environment</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">~650 MB</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Official Repo</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Extensive GUI customization &amp; widgets</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">GNOME 46+</td>
+        <td class="p-3.5 font-mono text-text text-xs">Full Desktop Environment</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">~750 MB</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Official Repo</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Focused gesture-driven modern workflow</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="install-kde-plasma">
+      Installing KDE Plasma 6
+    </SectionHeading>
+    <p>
+      <strong class="text-white">KDE Plasma 6</strong> offers rich visual customization, Wayland support, Dolphin file manager, and Qt-accelerated performance:
+    </p>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Full Plasma 6 Desktop + Applications Suite</h3>
+
+```bash
+# Install complete KDE Plasma 6 desktop and utility apps
+npk install plasma-meta kde-applications-meta sddm
+
+# Enable SDDM display manager
+sudo systemctl enable --now sddm
+```
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Minimal Plasma 6 Installation (Lean Setup)</h3>
+
+```bash
+# Install core Plasma shell and essential tools only
+npk install plasma-desktop sddm dolphin konsole
+
+# Enable SDDM display manager
+sudo systemctl enable --now sddm
+```
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="install-gnome">
+      Installing GNOME Desktop
+    </SectionHeading>
+    <p>
+      <strong class="text-white">GNOME</strong> provides a distraction-free, gesture-centric user interface with native Wayland scaling and GTK4 Libadwaita styling:
+    </p>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Full GNOME Desktop + Extra Apps</h3>
+
+```bash
+# Install complete GNOME environment and GDM display manager
+npk install gnome gnome-extra gdm
+
+# Enable GDM display manager
+sudo systemctl enable --now gdm
+```
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Minimal GNOME Shell Installation</h3>
+
+```bash
+# Install minimal GNOME shell and Nautilus file manager
+npk install gnome-shell nautilus gnome-terminal gdm
+
+# Enable GDM display manager
+sudo systemctl enable --now gdm
+```
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="display-managers">
+      Display Manager Setup (SDDM / GDM)
+    </SectionHeading>
+    <p>
+      Ensure only one graphical display manager is active at a time to prevent boot-time service conflicts:
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-2">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Switching to SDDM (KDE)</h4>
+
+```bash
+sudo systemctl disable gdm
+sudo systemctl enable --now sddm
+```
+      </Card>
+
+      <Card class="space-y-2">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Switching to GDM (GNOME)</h4>
+
+```bash
+sudo systemctl disable sddm
+sudo systemctl enable --now gdm
+```
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="switching-sessions">
+      Switching Sessions &amp; Desktop Portals
+    </SectionHeading>
+    <p>
+      Once installed, you can switch between <strong class="text-white">Hyprland</strong>, <strong class="text-white">Plasma (Wayland)</strong>, and <strong class="text-white">GNOME</strong> directly from your login screen:
+    </p>
+
+    <ul class="space-y-2 list-disc pl-5 text-sm text-text-muted">
+      <li><strong class="text-text">Session Selection:</strong> Click the gear or session dropdown menu on SDDM/GDM to select your desired desktop session before entering your password.</li>
+      <li><strong class="text-text">XDG Portals:</strong> Nitro OS automatically coordinates the correct portal (<code class="text-[#299C45] font-mono">xdg-desktop-portal-hyprland</code>, <code class="text-[#299C45] font-mono">xdg-desktop-portal-kde</code>, or <code class="text-[#299C45] font-mono">xdg-desktop-portal-gnome</code>) based on the running session.</li>
+      <li><strong class="text-text">Audio &amp; Bluetooth:</strong> PipeWire and WirePlumber automatically provide sound and microphone access across all installed desktop environments without extra configuration.</li>
+    </ul>
+  </section>
+</div>

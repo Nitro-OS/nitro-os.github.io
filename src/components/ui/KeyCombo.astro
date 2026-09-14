@@ -1,0 +1,22 @@
+---
+import Kbd from "./Kbd.astro";
+
+interface Props {
+  keys: string[];
+  class?: string;
+}
+
+const { keys, class: className = "" } = Astro.props;
+---
+
+<span class:list={["inline-flex items-center gap-1.5 whitespace-nowrap", className]}>
+  {keys.map((key, index) => {
+    const isModifier = key.startsWith("SUPER") || key === "Ctrl" || key === "Alt" || key === "Shift";
+    return (
+      <>
+        {index > 0 && <span class="text-text-dim text-xs font-mono select-none">+</span>}
+        <Kbd accent={isModifier}>{key}</Kbd>
+      </>
+    );
+  })}
+</span>

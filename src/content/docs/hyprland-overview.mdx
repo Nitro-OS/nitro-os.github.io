@@ -1,0 +1,44 @@
+---
+title: "Hyprland Overview"
+section: "Hyprland & Desktop"
+description: "Architecture, Wayland protocols, compositor features, and modular configuration breakdown in Nitro OS."
+lastUpdated: "2026"
+prev:
+  title: "Quickstart Checklist"
+  href: "/docs/quickstart"
+next:
+  title: "Default Keybindings"
+  href: "/docs/keybindings"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="what-is-hyprland">
+      Hyprland Wayland Compositor
+    </SectionHeading>
+    <p>
+      Hyprland is a dynamic tiling Wayland compositor that does not sacrifice on appearance. It provides fluid animations, rounded corners, dual-borders, and advanced multi-monitor workspaces.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="config-architecture">
+      Nitro OS Configuration Layout
+    </SectionHeading>
+    <p>
+      Configurations are located in <code class="text-[#299C45] font-mono">~/.config/hypr/</code>:
+    </p>
+
+```text
+~/.config/hypr/
+├── hyprland.conf            # Main entrypoint
+├── nitro/
+│   ├── keybindings.lua     # App shortcuts & key bindings
+│   ├── windowrules.conf    # Window floating & opacity rules
+│   └── monitors.conf       # Display resolutions & scaling
+└── scripts/                # Utility shell scripts
+```
+  </section>
+</div>

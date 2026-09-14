@@ -11,20 +11,20 @@ import { features } from "../../data/features";
       </h2>
     </div>
 
-    <div class="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         features.map((f) => {
           const Icon = f.icon;
           return (
-            <div class="group bg-bg px-7 py-8 transition-colors hover:bg-surface">
+            <div class="group rounded-2xl border border-border bg-surface p-7 transition-all duration-200 hover:border-accent/40 hover:shadow-sm">
               <Icon
-                size={40}
+                size={36}
                 stroke-width={1.8}
                 class="mb-5 text-accent"
                 aria-hidden="true"
               />
-              <h3 class="mb-2 font-display text-[18.5px] font-medium text-text">{f.title}</h3>
-              <p class="text-[15.5px] leading-relaxed text-text-muted">{f.desc}</p>
+              <h3 class="mb-2 font-display text-[18.5px] font-medium text-text group-hover:text-accent transition-colors">{f.title}</h3>
+              <p class="text-[15px] leading-relaxed text-text-muted">{f.desc}</p>
             </div>
           );
         })

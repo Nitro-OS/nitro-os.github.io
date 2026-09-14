@@ -1,0 +1,36 @@
+---
+title: "Screen Sharing & Portals"
+section: "Advanced Guides"
+description: "Configure PipeWire, XDG desktop portals, OBS Studio capture, Discord, and browser screen sharing under Wayland."
+lastUpdated: "2026"
+prev:
+  title: "GPU & Graphics Drivers"
+  href: "/docs/gpu-graphics"
+next:
+  title: "Desktop Environments"
+  href: "/docs/desktop-environments"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="portal-packages">
+      Required Portal Packages
+    </SectionHeading>
+    <p>
+      Screen sharing in Nitro OS uses <code class="text-[#299C45] font-mono">xdg-desktop-portal-hyprland</code> with PipeWire and WirePlumber.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="discord-electron">
+      Discord &amp; Electron App Flags
+    </SectionHeading>
+
+```bash
+# Discord screen capture under Wayland
+discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer
+```
+  </section>
+</div>

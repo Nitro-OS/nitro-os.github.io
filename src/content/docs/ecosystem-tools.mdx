@@ -1,0 +1,72 @@
+---
+title: "Ecosystem Tools"
+section: "Ecosystem Tools"
+description: "Overview of Alacritty, Waybar status bar, Rofi application menu, Tmux session manager, and Mako notifications."
+lastUpdated: "2026"
+prev:
+  title: "NitroHttp CLI"
+  href: "/docs/nitrohttp"
+next:
+  title: "GPU & Graphics Drivers"
+  href: "/docs/gpu-graphics"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="tmux-config">
+      Tmux Terminal Multiplexer (~/.tmux.conf)
+    </SectionHeading>
+    <p>
+      Nitro OS ships with a customized <strong class="text-text">Tmux</strong> configuration with modern keybindings, OneDark theme, mouse support, and Vim navigation:
+    </p>
+    <div class="grid sm:grid-cols-2 gap-3 text-xs font-mono">
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Leader Prefix</span>
+        <div class="flex items-center gap-1.5">
+          <Kbd accent>Ctrl</Kbd>
+          <span class="text-text-dim text-[11px]">+</span>
+          <Kbd>A</Kbd>
+        </div>
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Horizontal Split</span>
+        <div class="flex items-center gap-1.5">
+          <Kbd accent>Ctrl+A</Kbd>
+          <span class="text-text-dim text-[11px]">then</span>
+          <Kbd>O</Kbd>
+        </div>
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Vertical Split</span>
+        <div class="flex items-center gap-1.5">
+          <Kbd accent>Ctrl+A</Kbd>
+          <span class="text-text-dim text-[11px]">then</span>
+          <Kbd>P</Kbd>
+        </div>
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Pane Navigation</span>
+        <div class="flex items-center gap-1.5">
+          <Kbd accent>Ctrl+A</Kbd>
+          <span class="text-text-dim text-[11px]">+</span>
+          <Kbd>h/j/k/l</Kbd>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="rofi-launcher">
+      Rofi Dynamic App &amp; Script Launcher
+    </SectionHeading>
+
+```bash
+# Application launcher (SUPER + Space)
+rofi -show drun
+```
+  </section>
+</div>

@@ -1,0 +1,212 @@
+---
+title: "NPK CLI Commands"
+section: "Nitro Package Manager"
+description: "Reference guide for all npk subcommands: install, remove, search, update, upgrade, and clean."
+lastUpdated: "2026"
+prev:
+  title: "NPK Overview"
+  href: "/docs/npk-overview"
+next:
+  title: "NPK Configuration"
+  href: "/docs/npk-config"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="commands-cheatsheet">
+      Commands &amp; Aliases Cheatsheet
+    </SectionHeading>
+    <p>
+      <strong class="text-white">NitroPkg (<code class="text-[#299C45] font-mono">npk</code>)</strong> provides intuitive subcommands and short single/double-letter aliases designed for fast terminal typing:
+    </p>
+
+    <DataTable headers={["Command", "Alias", "Arguments", "Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">install</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>i</Kbd></td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<PACKAGE>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Installs one or multiple packages</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">remove</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>rm</Kbd></td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<PACKAGE>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Uninstalls packages cleanly</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">search</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>s</Kbd></td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">{"<QUERY>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Searches packages by keyword or regex</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">update</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">-</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Syncs package database from remote mirrors</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">upgrade</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">-</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Upgrades all installed packages to latest</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">clean</td>
+        <td class="p-3.5 font-mono text-text">-</td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">-</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Cleans cached download packages to reclaim disk</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">list</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>ls</Kbd></td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">[--installed]</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Lists installed or orphan packages</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold">help</td>
+        <td class="p-3.5 font-mono text-text"><Kbd>-h</Kbd> <Kbd>--help</Kbd></td>
+        <td class="p-3.5 font-mono text-text-dim text-xs">[COMMAND]</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Displays help information and command flags</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-install">
+      npk install / npk i (Install Packages)
+    </SectionHeading>
+    <p>
+      Downloads and installs one or more packages from the configured Nitro OS repositories along with all required dependencies:
+    </p>
+
+```bash
+# Install a single package using full command
+npk install firefox
+
+# Install using short alias 'i'
+npk i neovim
+
+# Install multiple packages in a single transaction
+npk i git curl ripgrep fzf zsh
+
+# Non-interactive confirmation mode
+npk i alacritty -y
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-remove">
+      npk remove / npk rm (Remove Packages)
+    </SectionHeading>
+    <p>
+      Safely removes installed packages from your Nitro OS system, with dependency checking to prevent breaking other active packages:
+    </p>
+
+```bash
+# Remove a package using full command
+npk remove firefox
+
+# Remove using short alias 'rm'
+npk rm vlc
+
+# Remove package and clean unneeded orphaned dependencies
+npk rm thunar --autoremove
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-search">
+      npk search / npk s (Search Packages)
+    </SectionHeading>
+    <p>
+      Searches all configured official repositories and mirrors for package names, keywords, and descriptions:
+    </p>
+
+```bash
+# Search packages by name or keyword
+npk search waybar
+
+# Search using short alias 's'
+npk s rust
+
+# Filter exact matches only
+npk s --exact hyprland
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-update">
+      npk update (Sync Database)
+    </SectionHeading>
+    <p>
+      Refreshes and synchronizes local package metadata databases against active Nitro OS repository mirrors:
+    </p>
+
+```bash
+# Synchronize package databases
+npk update
+
+# Force refresh package databases
+npk update --refresh
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-upgrade">
+      npk upgrade (System &amp; Package Upgrades)
+    </SectionHeading>
+    <p>
+      Upgrades all installed packages across your Nitro OS installation to their latest available repository versions:
+    </p>
+
+```bash
+# Perform full system rolling upgrade
+npk upgrade
+
+# Non-interactive upgrade with auto-confirm
+npk upgrade -y
+
+# Preview package upgrade changes without modifying system
+npk upgrade --dry-run
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-clean">
+      npk clean (Clean Cache)
+    </SectionHeading>
+    <p>
+      Frees disk space by removing obsolete downloaded package archives and build caches:
+    </p>
+
+```bash
+# Clean old package cache archives
+npk clean
+
+# Thoroughly purge entire cache directory
+npk clean --all
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="npk-list">
+      npk list (List Installed Packages)
+    </SectionHeading>
+    <p>
+      Inspects local package state, listing installed software, explicitly installed binaries, and orphaned packages:
+    </p>
+
+```bash
+# List all installed packages
+npk list --installed
+
+# List orphan packages no longer required by any installed application
+npk list --orphans
+```
+  </section>
+</div>

@@ -42,8 +42,6 @@ export const docsData: Record<string, DocPage> = {
       { id: "download-iso", text: "Download & Flash ISO", level: 2 },
       { id: "live-boot", text: "Booting Live Environment", level: 2 },
       { id: "installer-wizard", text: "Running Nitro Installer", level: 2 },
-      { id: "partitioning-guide", text: "Partitioning & File Systems", level: 2 },
-      { id: "first-boot", text: "Rebooting into Nitro OS", level: 2 },
     ],
     prev: { title: "Introduction", href: "/docs/introduction" },
     next: { title: "Quickstart Checklist", href: "/docs/quickstart" },

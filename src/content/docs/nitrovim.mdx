@@ -1,0 +1,318 @@
+---
+title: "NitroVim Modal Editor"
+section: "Ecosystem Tools"
+description: "High-performance Neovim distribution with preconfigured LSP servers, Treesitter syntax, DAP debugging, and Git integration."
+lastUpdated: "2026"
+prev:
+  title: "NPK Packaging Guide"
+  href: "/docs/npk-packaging"
+next:
+  title: "NitroHttp CLI"
+  href: "/docs/nitrohttp"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import DataTable from "../../components/ui/DataTable.astro";
+import Kbd from "../../components/ui/Kbd.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="overview">
+      NitroVim Overview &amp; Quickstart
+    </SectionHeading>
+    <p>
+      <strong class="text-white">NitroVim</strong> is the official modal code editor for <strong class="text-[#299C45]">Nitro OS</strong>. Engineered on top of Neovim with Lua, it delivers sub-millisecond startup, Treesitter syntax parsing, Mason LSP tooling, AI assistance with GitHub Copilot, and native Git workflow integration.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Leader Key</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">
+          The global leader key is configured to <Kbd>Space</Kbd>. All custom commands and menu toggles chain from Space.
+        </p>
+      </Card>
+
+      <Card class="space-y-1.5">
+        <h4 class="text-xs font-semibold text-[#299C45] font-mono uppercase tracking-wider">Interactive Learning</h4>
+        <p class="text-xs text-text-dim leading-relaxed font-sans">
+          Launch <code class="text-white font-mono">:NitroLearn</code> inside the editor anytime for interactive motion drills and keymap guides.
+        </p>
+      </Card>
+    </div>
+
+```bash
+# Launch NitroVim
+nvim
+
+# Open a specific file or folder
+nvim ./src/main.rs
+```
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="keymaps-navigation">
+      General &amp; Navigation Keymaps
+    </SectionHeading>
+    <p>Core window splitting, buffer navigation, and code formatting shortcuts:</p>
+
+    <DataTable headers={["Keybinding", "Action / Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;f</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Format current buffer (LSP auto-formatter)</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;k</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Navigate to next buffer tab</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;j</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Navigate to previous buffer tab</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;g</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Focus active editor buffer (from NvimTree/Terminal)</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;C-h&gt; / &lt;C-l&gt;</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Move focus to left / right split window</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;C-j&gt; / &lt;C-k&gt;</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Move focus to window below / above</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="telescope-finder">
+      Fuzzy Finding &amp; File Tree (Telescope + NvimTree)
+    </SectionHeading>
+    <p>Fast file discovery, text grepping, and buffer management:</p>
+
+    <DataTable headers={["Keybinding", "Module", "Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;e</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">NvimTree</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle file explorer sidebar</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;o</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">NvimTree</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Focus file explorer tree</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;n</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">NvimTree</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Locate active file in explorer tree</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;ff</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">Telescope</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Fuzzy find files by filename</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;fg</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">Telescope</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Live grep text search across workspace</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;fb</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">Telescope</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Interactive open buffer switcher</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;fh</Kbd></td>
+        <td class="p-3.5 font-mono text-text text-xs">Telescope</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Search Neovim help documentation tags</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="lsp-intelligence">
+      LSP Intelligence &amp; Code Diagnostics (Lspsaga + Trouble)
+    </SectionHeading>
+    <p>Full language server features including hover cards, code actions, references, and diagnostics:</p>
+
+    <DataTable headers={["Keybinding", "LSP Action Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>K</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Hover documentation &amp; symbol type information (Lspsaga)</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>F / &lt;leader&gt;ca</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Trigger contextual code actions and quickfixes</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>gd</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Go to symbol definition / peek definition</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>gr</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Show references finder across all project files</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>gi</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Jump to symbol interface implementation</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;rn</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Rename symbol project-wide</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>[d / ]d</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Jump to previous / next diagnostic error or warning</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;xx</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle Trouble workspace diagnostics panel</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="terminal-git">
+      Integrated Terminals &amp; LazyGit (ToggleTerm)
+    </SectionHeading>
+    <p>Manage background shell tasks and git repositories without leaving your buffer:</p>
+
+    <DataTable headers={["Keybinding", "Terminal / Git Action"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;t</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle horizontal split terminal</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;C-\&gt;</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle floating centered terminal</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;ft</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle focus between terminal and editor buffer</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;lg</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Open floating LazyGit interface</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="dap-debugging">
+      Interactive Debugging (DAP)
+    </SectionHeading>
+    <p>Integrated breakpoint debugging powered by <code class="text-[#299C45] font-mono">nvim-dap</code> and <code class="text-[#299C45] font-mono">nvim-dap-ui</code>:</p>
+
+    <DataTable headers={["Keybinding", "Debugger Operation"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;F5&gt; / &lt;leader&gt;dc</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Start / Continue debugging session</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;db</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle breakpoint on current line</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;dB</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Clear all active breakpoints</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;F10&gt; / &lt;leader&gt;dn</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Step over statement</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;F11&gt; / &lt;leader&gt;di</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Step into function call</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;F12&gt; / &lt;leader&gt;do</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Step out of function call</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap"><Kbd>&lt;leader&gt;du</Kbd></td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggle interactive DAP UI debugger windows</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="custom-commands">
+      NitroVim Commands &amp; Themes
+    </SectionHeading>
+    <p>Custom user commands available inside the command-line buffer:</p>
+
+    <DataTable headers={["Command", "Description"]}>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:NitroLearn</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Interactive visual dashboard for mastering Vim motions and NitroVim keymaps.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:ThemeSwitch</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Interactive popup menu to instantly preview and apply 20+ included themes.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:TransparentToggle</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Toggles background transparency for seamless desktop compositor blur.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:FileExplorer {"{left|right}"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Opens file tree explorer positioned at designated side.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:CloseAllBuffers</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Closes all open buffers except the currently focused file.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:VTerm {"<n>"}</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Launches up to 4 synchronized vertical split terminals.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:Mason</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Opens Mason LSP, DAP, linter, and formatter package manager.</td>
+      </tr>
+      <tr>
+        <td class="p-3.5 font-mono text-[#299C45] font-semibold text-xs whitespace-nowrap">:Lazy</td>
+        <td class="p-3.5 text-text-muted text-xs font-sans">Opens Lazy.nvim plugin manager dashboard for updates and health checks.</td>
+      </tr>
+    </DataTable>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="plugins-customization">
+      Customization &amp; Adding Lua Plugins
+    </SectionHeading>
+    <p>
+      NitroVim configurations are located in <code class="text-white font-mono">~/.config/nvim/</code>. You can customize options, keymaps, and install community plugins using the declarative Lua structure:
+    </p>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Adding a Plugin in lua/nitro/plugins/plugins.lua</h3>
+
+```lua
+return {
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+    },
+  },
+}
+```
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-white font-mono uppercase tracking-wide">Enabling New LSP Servers in lua/nitro/lsp/lsp.lua</h3>
+
+```lua
+local servers = { "rust_analyzer", "gopls", "pyright", "ts_ls", "clangd", "lua_ls" }
+
+for _, server in ipairs(servers) do
+  lspconfig[server].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
+```
+    </div>
+  </section>
+</div>

@@ -28,7 +28,7 @@ export const footerCols: FooterColumn[] = [
       { label: "Features", href: "#features" },
       { label: "Why Nitro", href: "#why" },
       { label: "Showcase", href: "#showcase" },
-      { label: "Changelog", href: "https://github.com/Nitro-OS/nitro-os.github.io/releases" },
+      { label: "Changelog", href: "https://github.com/Nitro-OS" },
     ],
   },
   {
@@ -37,14 +37,14 @@ export const footerCols: FooterColumn[] = [
       { label: "NitroVim", href: "https://github.com/NitroVim/NitroVim" },
       { label: "NPK", href: "https://github.com/Nitro-OS/NitroPkg" },
       { label: "Launcher", href: "#tools" },
-      { label: "Documentation", href: "https://github.com/Nitro-OS/nitro-os.github.io#readme" },
+      { label: "Documentation", href: "/docs" },
     ],
   },
   {
     heading: "Community",
     links: [
       { label: "GitHub", href: "https://github.com/Nitro-OS" },
-      { label: "Forum", href: "https://github.com/Nitro-OS/nitro-os.github.io/discussions" },
+      { label: "Forum", href: "https://github.com/Nitro-OS" },
     ],
   },
 ];

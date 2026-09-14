@@ -1,0 +1,66 @@
+---
+title: "Quickstart Checklist"
+section: "Getting Started"
+description: "Essential first-boot setup: package catalog refresh, display refresh rates, audio, Bluetooth, and repository channels."
+lastUpdated: "2026"
+prev:
+  title: "Installation Guide"
+  href: "/docs/installation"
+next:
+  title: "Hyprland Overview"
+  href: "/docs/hyprland-overview"
+---
+
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import Card from "../../components/ui/Card.astro";
+import KeyCombo from "../../components/ui/KeyCombo.astro";
+
+<div class="space-y-12 text-[15px] leading-relaxed text-text-muted">
+  <section class="space-y-4">
+    <SectionHeading id="first-boot">
+      First Boot &amp; Login
+    </SectionHeading>
+    <p>
+      Upon first booting into your installed system, greet the minimal Wayland greeter. Log in with your user credentials created during installation.
+    </p>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="essential-keybinds">
+      Essential First Keybindings
+    </SectionHeading>
+    <div class="grid sm:grid-cols-2 gap-3 text-xs font-mono">
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Open Terminal</span>
+        <KeyCombo keys={["SUPER", "Return"]} />
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">App Launcher</span>
+        <KeyCombo keys={["SUPER", "Space"]} />
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Close Window</span>
+        <KeyCombo keys={["SUPER", "Q"]} />
+      </Card>
+      <Card class="!p-3.5 flex items-center justify-between">
+        <span class="text-text-dim">Exit / Logout Menu</span>
+        <KeyCombo keys={["SUPER+Shift", "P"]} />
+      </Card>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <SectionHeading id="system-update">
+      Synchronizing &amp; Updating Packages
+    </SectionHeading>
+    <p>
+      Run a complete system update with <code class="text-[#299C45] font-mono">npk</code>:
+    </p>
+
+```bash
+# Update package databases and system
+npk update
+npk upgrade
+```
+  </section>
+</div>

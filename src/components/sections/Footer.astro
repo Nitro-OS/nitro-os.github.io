@@ -16,7 +16,7 @@ import { footerCols as cols } from "../../data/navigation";
       {
         cols.map((col) => (
           <div>
-            <p class="mb-4 font-mono text-[12px] text-text-dim">{col.heading}</p>
+            <p class="mb-4 text-[12px] font-semibold text-text-dim">{col.heading}</p>
             <ul class="flex flex-col gap-3">
               {col.links.map((link) => (
                 <li>
@@ -36,8 +36,8 @@ import { footerCols as cols } from "../../data/navigation";
     </div>
 
     <div class="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-      <p class="font-mono text-[12px] text-text-dim">© 2026 Nitro OS. Open source, always.</p>
-      <p class="font-mono text-[12px] text-text-dim">Built for speed, control, and polish.</p>
+      <p class="text-[12px] text-text-dim">© 2026 Nitro OS. Open source, always.</p>
+      <p class="text-[12px] text-text-dim">Built for speed, control, and polish.</p>
     </div>
   </div>
 </footer>
